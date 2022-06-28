@@ -1,0 +1,92 @@
+<div class='cell'>
+  <div class='topic-description'>
+    <div class="grid-x">
+      <div class='cell small-6 topic-subject'>{{topic.subject}}</div>
+      <div class='cell small-6 topic-metadata'>Posted by
+        {{topic.user.name}}
+        on
+        {{format_date topic.createdAt}}</div>
+      <p>{{topic.content}}</p>
+    </div>
+  </div>
+</div>
+
+{{#if logged_in}}
+<div class="cell">
+  <div class="button-box">
+    <button id="topic-edit" class="button-edit button" data-id="{{topic.id}}">edit</button>
+    <button id="topic-delete" class="button-delete button" data-id="{{topic.id}}">delete</button>
+  </div>
+</div>
+{{/if}}
+
+<div class="cell" id="responses">
+  <p>Responses:</p>
+  {{#if logged_in}}
+  {{#each topic.responses}}
+  <div class="cell">
+    <div class='response-description'>
+      <a href='/response/{{this.id}}'>
+        <div class="grid-x">
+          <div class='cell small-6 response-subject'>
+            {{this.subject}}
+          </div>
+          <div class='cell small-6 response-metadata'>Posted by
+            {{this.user.name}}
+            on
+            {{format_date this.createdAt}}
+          </div>
+          <p>{{this.content}}</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+{{/each}}
+{{else}}
+{{#each topic.responses}}
+<div class="cell">
+  <div class='response-description'>
+    <div class="grid-x">
+      <div class='cell small-6 response-subject'>
+        {{this.subject}}
+      </div>
+      <div class='cell small-6 response-metadata'>Posted by
+        {{this.user.name}}
+        on
+        {{format_date this.createdAt}}
+      </div>
+      <p>{{this.content}}</p>
+    </div>
+  </div>
+</div>
+{{/each}}
+{{/if}}
+</div>
+
+{{#if logged_in}}
+<div class='cell'>
+  <h2>Create Response</h2>
+  <form id="response-create-form" data-id="{{topic.id}}">
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="cell">
+          <label>Subject
+            <input type="text" id='response-subject' placeholder="subject">
+          </label>
+        </div>
+        <div class="cell">
+          <label>Contents
+            <textarea id='response-content' placeholder="content"></textarea>
+          </label>
+          <div class='cell'>
+            <button class='button' data-id="{{topic.id}}" type='submit'>submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{{/if}}
+
+<script src='../js/show_topic.js'></script>

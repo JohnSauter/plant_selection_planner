@@ -1,0 +1,77 @@
+#page-title {
+    border-radius: 10px;
+    padding: 5px;
+    border: 5px;
+    margin: 10px;
+    background: white;
+    color: black;
+    box-shadow: 5px 5px 2px #cccccc;
+    display: inline-block;
+    font-weight: bold;
+}
+
+#page-title-background {
+    background: black;
+}
+
+.nav-button {
+    background: black;
+    color: white;
+}
+
+.topic-description {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.topic-subject {
+    color: white;
+    background: black;
+    padding: 10px;
+    display: inline;
+}
+
+.topic-metadata {
+    color: white;
+    background: black;
+    padding: 10px;
+    text-align: right;
+    display: inline;
+}
+
+.response-description {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.response-subject {
+    color: white;
+    background: black;
+    padding: 10px;
+    display: inline;
+}
+
+.response-metadata {
+    color: white;
+    background: black;
+    padding: 10px;
+    text-align: right;
+    display: inline;
+}
+.button-box {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.button-edit {
+    padding: 10px;
+    margin: 10px;
+}
+
+.button-delete {
+    padding: 10px;
+    margin: 10px;
+}

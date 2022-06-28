@@ -1,0 +1,24 @@
+<div class="cell">
+  <form id="edit-topic" data-id="{{topic.id}}">
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="cell">
+          <label>Subject
+            <input type="text" id="topic-subject" value="{{topic.subject}}">
+          </label>
+        </div>
+        <div class="cell">
+          <label>Content
+            <textarea id="topic-content" name="topic-content" 
+              form="edit-topic">{{topic.content}}</textarea>
+          </label>
+          <div class="cell">
+            <button type="submit" class="button" data-id="{{topic.id}}">submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src='../../../js/edit_topic.js'></script>
