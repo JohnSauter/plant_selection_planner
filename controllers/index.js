@@ -1,13 +1,11 @@
 const router = require('express').Router();
 
-const homeRoutes = require('./homeRoutes');
-const topicRoutes = require('./topicRoutes');
-const responseRoutes = require('./responseRoutes');
-const apiRoutes = require('./api');
+const frontRoutes = require('./frontRoutes');
+const gardenerRoutes = require('./gardenerRoutes');
+const nursery_managerRoutes = require('./nursery_managerRoutes');
 
-router.use('/', homeRoutes);
-router.use('/topic', topicRoutes);
-router.use('/response', responseRoutes);
-router.use('/api', apiRoutes);
+router.use('/', frontRoutes);
+router.use('/gardener', gardenerRoutes);
+router.use('/nursery_manager', nursery_managerRoutes);
 
 module.exports = router;
