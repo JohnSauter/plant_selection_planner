@@ -1,8 +1,11 @@
 const router = require('express').Router();
 
-const frontRoutes = require('./frontRoutes');
-const gardenerRoutes = require('./gardenerRoutes');
-const nursery_managerRoutes = require('./nursery_managerRoutes');
+const frontRoutes = 
+    require('./front/frontRoutes');
+const gardenerRoutes = 
+    require('./gardene/gardenerRoutes');
+const nursery_managerRoutes = 
+    require('./nursery_manager/nursery_managerRoutes');
 
 router.use('/', frontRoutes);
 router.use('/gardener', gardenerRoutes);

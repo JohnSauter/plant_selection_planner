@@ -29,4 +29,7 @@ router.get('/:id', withAuth, async (req, res) => {
   }
 });
 
+const apiRoutes =  require('./api');
+router.use(apiRoutes);
+
 module.exports = router;
