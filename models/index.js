@@ -1,6 +1,11 @@
 const User = require('./User');
-const Topic = require('./Topic');
-const Response = require('./Response');
+const Criterion = require('./Criterion');
+const Garden_zone = require('./Garden_zone');
+const Nursery_area = require('./Nursery_area');
+const Plant_instance = require('./Plant_instance');
+const Plant_type = require('./Plant_type');
+
+/* Example code for establishing replationships
 
 User.hasMany(Topic, {
   foreignKey: 'user_id',
@@ -29,4 +34,12 @@ Response.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
-module.exports = { User, Topic, Response };
+*/
+module.exports = {
+  User,
+  Criterion,
+  Garden_zone,
+  Nursery_area,
+  Plant_instance,
+  Plant_type,
+};
