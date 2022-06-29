@@ -3,21 +3,14 @@ const { Criterion, Garden_zone, Plant_instance, Plant_type, User }
   = require('../models');
 
 const userData = require('./userData.json');
-const criterionData = require('./criterionData.json');
 const garden_zoneData = require('./garden_zoneData.json');
 const nursery_areaData = require('./nursery_areaData.json');
-const plant_instanceData = require('./plant_instanceData.json');
 const plant_typeData = require('./plant_typeData.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
   const users = await User.bulkCreate(userData, {
-    individualHooks: true,
-    returning: true,
-  });
-
-  const criterion = await User.bulkCreate(criterionData, {
     individualHooks: true,
     returning: true,
   });
@@ -31,10 +24,7 @@ const seedDatabase = async () => {
     individualHooks: true,
     returning: true,
   });
-  const plant_instance = await User.bulkCreate(plant_instanceData, {
-    individualHooks: true,
-    returning: true,
-  });
+  
   const plant_type = await User.bulkCreate(plant_typeData, {
     individualHooks: true,
     returning: true,
