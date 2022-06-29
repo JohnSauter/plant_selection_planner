@@ -1,17 +1,21 @@
 [
   {
-    "name": "Sal",
-    "email": "sal@hotmail.com",
-    "password": "password12345"
+    "name": "Nusery",
+    "email": "nursery@nursery.com",
+    "password": "password12345",
+    "user_type": "Nursery"
+
   },
   {
-    "name": "Lernantino",
-    "email": "lernantino@gmail.com",
-    "password": "password12345"
+    "name": "Gardener1",
+    "email": "gardener1@gmail.com",
+    "password": "password12345",
+    "user_type": "Gardener"
   },
   {
-    "name": "Amiko",
-    "email": "amiko2k20@aol.com",
-    "password": "password12345"
+    "name": "Gardener2",
+    "email": "gardener2@aol.com",
+    "password": "password12345",
+    "user_type": "Gardener"
   }
 ]
