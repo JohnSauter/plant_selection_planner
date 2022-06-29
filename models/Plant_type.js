@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Plant extends Model {}
+class Plant_type extends Model {}
 
 Plant.init(
   {
@@ -11,31 +11,38 @@ Plant.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    plant_name: { // Binomial Nomenclature (scientific name)
+    plant_name: {
+      // Binomial Nomenclature (scientific name)
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: { // Common name, variety, and/or description
+    description: {
+      // Common name, variety, and/or description
       type: DataTypes.STRING,
       allowNull: true,
     },
-    hardiness_zone_lower: { // zones 1 through 13
+    hardiness_zone_lower: {
+      // zones 1 through 13
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    hardiness_zone_upper: { // zones 1 through 13
+    hardiness_zone_upper: {
+      // zones 1 through 13
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    habit: { // tree, shrub, vine, grass, herb
+    habit: {
+      // tree, shrub, vine, grass, herb
       type: DataTypes.STRING,
       allowNull: false,
     },
-    size: { // l x w
+    size: {
+      // l x w
       type: DataTypes.STRING,
       allowNull: false,
     },
-    life_span: { // annual, biennial, perennial
+    life_span: {
+      // annual, biennial, perennial
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -56,11 +63,13 @@ Plant.init(
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
-    season_of_interest_lower: { // early spring = 1, mid spring = 2, late spring = 3, early summer = 4, mid summer = 5, late summer = 6, fall = 7, winter = 8 ---> range
+    season_of_interest_lower: {
+      // early spring = 1, mid spring = 2, late spring = 3, early summer = 4, mid summer = 5, late summer = 6, fall = 7, winter = 8 ---> range
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    season_of_interest_upper: { // early spring = 1, mid spring = 2, late spring = 3, early summer = 4, mid summer = 5, late summer = 6, fall = 7, winter = 8 ---> range
+    season_of_interest_upper: {
+      // early spring = 1, mid spring = 2, late spring = 3, early summer = 4, mid summer = 5, late summer = 6, fall = 7, winter = 8 ---> range
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -69,8 +78,8 @@ Plant.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'plant',
+    modelName: 'plant_type',
   }
 );
 
-module.exports = Plant;
+module.exports = Plant_type;
