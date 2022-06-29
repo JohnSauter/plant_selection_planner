@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const e = require('express');
 const {
   User,
   Garden_zone,
@@ -7,19 +8,44 @@ const {
 } = require('../../Models');
 const withAuth = require('../../utils/auth');
 
-/* post /user/api/signup_as_gardener */
+/* Sign up as a gardener.  */
 router.post('/signup_as_gardener', async (req, res) => {
   try {
     const userData = await User.create({
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      user_type: 'gardener',
+      user_type: 'Gardener',
     });
 
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
+      req.session.gardener = true;
+      req.session.nursery_manager = false;
+
+      res.status(201).json(userData);
+    });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+/* Sign up as a nursery manager.  */
+router.post('/signup_as_nursery_manager', async (req, res) => {
+  try {
+    const userData = await User.create({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      user_type: 'Nursery',
+    });
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+      req.session.gardener = false;
+      req.session.nursery_manager = true;
 
       res.status(201).json(userData);
     });
@@ -51,9 +77,23 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+    /* The session keeps track of whether this is a gardener
+     * or a nursery manager.  */
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
+      if (userData.user_type == 'Gardener') {
+        req.session.gardener = true;
+      } else {
+        req.session.gardener = false;
+      }
+
+      if (userData.user_type == 'Nursery') {
+        req.session.nursery_manager = true;
+      } else {
+        req.session.nursery_manager = false;
+      }
+
       res.json({ user: userData, message: 'You are now logged in!' });
     });
   } catch (err) {

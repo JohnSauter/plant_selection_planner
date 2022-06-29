@@ -12,7 +12,10 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/gardener/home');
+      /* Take the browser to either the gardener or the
+       * nursery manager home page, depending on the
+       * type of the user.  */
+      document.location.replace('/user/home');
     } else {
       alert('Failed to log in.');
     }
