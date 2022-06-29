@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 /* Routes go here, then the API routes when we have them.
 
 const apiRoutes = require('./api');
-router.use(apiRoutes);
+router.use('/api', apiRoutes);
 
 */
 

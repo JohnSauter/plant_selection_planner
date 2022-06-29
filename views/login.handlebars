@@ -1,5 +1,6 @@
 
-<div class='cell'>
+<main>
+<h1>log in or sign up<h1>
   <h2>Login</h2>
   <form id="login-form">
     <div class="grid-container">
@@ -7,11 +8,6 @@
         <div class="cell">
           <label>Name
             <input type="text" id='name-login' placeholder="name">
-          </label>
-        </div>
-        <div class="cell">
-          <label>email
-            <input type="text" id='email-login' placeholder="email">
           </label>
         </div>
         <div class="cell">
@@ -25,9 +21,7 @@
       </div>
     </div>
   </form>
-</div>
 
-<div class='cell'>
   <h2>Signup</h2>
   <form id="signup-form">
     <div class="grid-container">
@@ -47,12 +41,20 @@
             <input type="password" id='password-signup' placeholder="password">
           </label>
         </div>
+        <div class=""cell">
+          <label for="role_choice">Gardener or Nursery Manager</label>
+          <select name="role_choice" id="role_choice-signup">
+            <option value="gardener">gardener</option>
+            <option value="nursery_manager">nursery manager</option>
+          </select>
+        </div>
          <div class='cell'>
-          <button class='button' type='submit'>submit</button>
+          <button class='button' type='submit'>signup</button>          
         </div>
       </div>
     </div>
   </form>
 </div>
+</main>
 
-<script src='./js/login.js'></script>
+<script src='./js/user.js'></script>

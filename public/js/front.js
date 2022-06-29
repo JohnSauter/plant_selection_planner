@@ -22,7 +22,7 @@ if (logout_btn) {
 
 /* The login button */
 const login = () => {
-  document.location.replace('/front/login');
+  document.location.replace('/user/login');
 };
 
 const login_btn = document.querySelector('#login');
