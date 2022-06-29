@@ -1,5 +1,7 @@
+/* Paths /user/api....  */
+
 const router = require('express').Router();
-const e = require('express');
+
 const {
   User,
   Garden_zone,
