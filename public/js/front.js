@@ -1,29 +1,31 @@
-/* the dashboard page */
+/* the logout button */
+const logout = async () => {
+  /* Tell the back end to log out the user who is
+   * on this session.  */
+  const response = await fetch('/user/api/logout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  });
 
-/* Create a topic  */
-const topic_create_form_handler = async (event) => {
-  event.preventDefault();
-
-  const subject = document.querySelector('#topic_subject').value.trim();
-  const content = document.querySelector('#topic_content').value.trim();
-
-  if (subject && content) {
-    const response = await fetch('/api/topic', {
-      method: 'POST',
-      body: JSON.stringify({ subject, content }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (response.ok) {
-      /* On success, refresh the dashboard to show the new topic.  */
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to create topic.');
-    }
+  if (response.ok) {
+    /* Display the front page.  */
+    document.location.replace('/');
+  } else {
+    alert('Failed to log out');
   }
 };
 
-const topic_create_form = document.querySelector('#topic_create_form');
-if (topic_create_form) {
-  topic_create_form.addEventListener('submit', topic_create_form_handler);
+const logout_btn = document.querySelector('#logout');
+if (logout_btn) {
+  logout_btn.addEventListener('click', logout);
+}
+
+/* The login button */
+const login = () => {
+  document.location.replace('/front/login');
+};
+
+const login_btn = document.querySelector('#login');
+if (login_btn) {
+  login_btn.addEventListener('click', login);
 }

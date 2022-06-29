@@ -16,10 +16,6 @@
       <nav class='title-bar-left'>
         <ul class='menu expanded'>
           <li><button class='button nav-button' id='home'>Home</button></li>
-          <li><button class='button nav-button' id='dashboard'>Dashboard</button></li>
-          {{#if page_topic_id}}
-          <li><button class="button nav-button" id="topic" data-topic_id="{{page_topic_id}}">Topic</button></li>
-          {{/if}}
           <li><button class='button nav-button' id='logout'>Logout</button></li>
         </ul>
       </nav>
@@ -27,32 +23,20 @@
       <nav class='title-bar-left'>
         <ul class='menu expanded'>
           <li><button class='button nav-button' id='home'>Home</button></li>
-          <li><button class='button nav-button' id='dashboard'>Dashboard</button></li>
           <li><button class='button nav-button' id='login'>Login</button></li>
         </ul>
       </nav>
       {{/if}}
     </div>
   </header>
-  <main>
-    <div id="page-title-background">
-      <div id="page-title">
-        {{page_title}}
-      </div>
-    </div>
-    <div class='grid-x grid-container-fluid'>
-      <div class='grid-x grid-margin-x'>
-        {{{body}}}
-      </div>
-    </div>
-  </main>
+  {{{body}}}
   <footer>
 
   </footer>
   <script src="/js/vendor/jquery.js"></script>
   <script src="/js/vendor/what-input.js"></script>
   <script src="/js/vendor/foundation.js"></script>
-  <script src='/js/homepage.js'></script>
+  <script src='/js/front.js'></script>
 </body>
 
 </html>
