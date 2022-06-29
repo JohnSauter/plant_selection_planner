@@ -1,7 +1,6 @@
 const User = require('./User');
 const Garden_zone = require('./Garden_zone');
 const Nursery_area = require('./Nursery_area');
-const Plant_instance = require('./Plant_instance');
 const Plant_type = require('./Plant_type');
 
 /* Example code for establishing replationships
@@ -38,6 +37,5 @@ module.exports = {
   User,
   Garden_zone,
   Nursery_area,
-  Plant_instance,
   Plant_type,
 };
