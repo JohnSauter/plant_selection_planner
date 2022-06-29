@@ -1,21 +1,21 @@
 {
-  "name": "unh_bootcamp-14-tech_blog",
+  "name": "plant_selection_[lanner",
   "version": "1.0.0",
-  "description": "technical blog",
+  "description": "search for desired garden plants",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JohnSauter/UNH_Bootcamp-14-Tech_Blog.git"
+    "url": "git+https://github.com/JohnSauter/plant_selection_planner.git"
   },
   "author": "John Sauter",
   "license": "AGPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/JohnSauter/UNH_Bootcamp-14-Tech_Blog/issues"
+    "url": "https://github.com/JohnSauter/plant_selection_planner/issues"
   },
-  "homepage": "https://github.com/JohnSauter/UNH_Bootcamp-14-Tech_Blog#readme",
+  "homepage": "https://github.com/JohnSauter/plan_selection_planner#README.md",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.4",
