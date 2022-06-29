@@ -13,7 +13,7 @@ Garden_zone.init(
     },
 
     name: {
-      type: Datatypes.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
 

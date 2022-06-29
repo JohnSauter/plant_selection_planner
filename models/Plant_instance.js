@@ -12,18 +12,18 @@ Plant_instance.init(
       autoIncrement: true,
     },
     plant_type_id: {
-      type: Datatypes.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'plant_type',
         key: 'id',
       },
     },
-    garden_area_id: {
-      type: Datatypes.INTEGER,
+    garden_zone_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'garden_area',
+        model: 'garden_zone',
         key: 'id',
       },
     },

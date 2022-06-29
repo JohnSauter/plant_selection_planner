@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/JohnSauter/plant_selection_planner.git"
   },
-  "author": "John Sauter",
+  "author": "Haley Gustafson and John Sauter",
   "license": "AGPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/JohnSauter/plant_selection_planner/issues"
@@ -24,6 +24,7 @@
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.20.1"
+    "path": "^0.12.7",
+    "sequelize": "^6.21.2"
   }
 }
