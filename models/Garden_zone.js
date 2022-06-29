@@ -11,21 +11,16 @@ Garden_zone.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    zone_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
+
+    name: {
+      type: Datatypes.STRING,
+      allowNull: true,
     },
+
     user_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'user',
-        key: 'id',
-      },
-    },
-    plant_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'plant_type',
         key: 'id',
       },
     },
