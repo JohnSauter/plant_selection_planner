@@ -1,20 +1,20 @@
 [
   {
     "name": "Nusery",
-    "email": "nursery@nursery.com",
+    "email": "nursery@systemeyescomputerstore.com",
     "password": "password12345",
     "user_type": "Nursery"
 
   },
   {
     "name": "Gardener1",
-    "email": "gardener1@gmail.com",
+    "email": "gardener1@systemeyescomputerstore.com",
     "password": "password12345",
     "user_type": "Gardener"
   },
   {
     "name": "Gardener2",
-    "email": "gardener2@aol.com",
+    "email": "gardener2@systemeyescomputerstore.com",
     "password": "password12345",
     "user_type": "Gardener"
   }

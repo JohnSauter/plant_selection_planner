@@ -1,12 +1,16 @@
+/* Paths of the form /gardener... */
 const router = require('express').Router();
-const { User, Garden_zone, Plant_type, Plant_instance } = require('../../Models');
+const {
+  User,
+  Garden_zone,
+  Plant_type,
+  Plant_instance,
+} = require('../../Models');
 const withAuth = require('../../utils/auth');
 
-/* Routes go here, then the API routes when we have them.
+/* Routes go here, then the API routes.  */
 
 const apiRoutes = require('./api');
-router.use(apiRoutes);
-
-*/
+router.use('/api', apiRoutes);
 
 module.exports = router;
