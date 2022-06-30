@@ -48,15 +48,18 @@ router.post('/email', async (req, res) => {
     } else {
       transporter = nodemailer.createTransport({
         host: email_host,
-        port: email_port,
-        secure: email_secure,
+        port: Number(email_port),
+        secure: JSON.parse(email_secure),
+        tls: {
+          rejectUnauthorized: false,
+        },
         auth: {
           user: email_user,
           pass: email_password,
         },
       });
     }
-    
+
     /* The email is from the gardener.  Get her name and
      * email address.  */
     const the_user_id = req.session.user_id;
@@ -117,7 +120,7 @@ router.post('/email', async (req, res) => {
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     res.status(200).end();
   } catch (err) {
-    res.status(500).end();
+    res.status(500).json(err);
   }
 });
 
