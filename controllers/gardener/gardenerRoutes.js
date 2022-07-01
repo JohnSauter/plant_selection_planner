@@ -5,7 +5,7 @@ const {
   Garden_zone,
   Plant_type,
   Plant_instance,
-} = require('../../Models');
+} = require('../../models');
 const withAuth = require('../../utils/auth');
 
 /* Routes go here, then the API routes.  */

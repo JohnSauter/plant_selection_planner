@@ -4,7 +4,7 @@ const {
   Garden_zone,
   Plant_type,
   Plant_instance,
-} = require('../../Models');
+} = require('../../models');
 const withAuth = require('../../utils/auth');
 
 /* Take the browser to the home page.  If the user is not
