@@ -13,7 +13,7 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/nursery_manager/home');
+      document.location.replace('/user/home');
     } else {
       alert('Failed to sign up.');
     }
