@@ -13,7 +13,7 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/gardener/home');
+      document.location.replace('/user/home');
     } else {
       /* Extract the error message from the response.  */
       let the_string = '';
