@@ -43,3 +43,6 @@ const login_btn = document.querySelector('#login');
 if (login_btn) {
   login_btn.addEventListener('click', login);
 }
+
+/* Make sure the Foundation JavaScript is running.  */
+$(document).foundation();
