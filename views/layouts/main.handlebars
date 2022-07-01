@@ -15,21 +15,26 @@
       {{#if logged_in}}
       <nav class='title-bar-left'>
         <ul class='menu expanded'>
-          <li><button class='button nav-button' id='home'>Home</button></li>
+          <li><button class='button nav-button' id='home'>Plant Selection Planner</button></li>
           <li><button class='button nav-button' id='logout'>Logout</button></li>
         </ul>
       </nav>
       {{else}}
       <nav class='title-bar-left'>
-        <ul class='menu expanded'>
-          <li><button class='button nav-button' id='home'>Home</button></li>
+        <ul class='menu row align-justify'>
+          <li><button class='button nav-button' id='home'>Plant Selection Planner</button></li>
           <li><button class='button nav-button' id='login'>Login</button></li>
         </ul>
       </nav>
       {{/if}}
     </div>
   </header>
-  {{{body}}}
+
+  <div class='grid-x align-center'>
+    <div class='card cell small-12' id='info-main'>
+      {{{body}}}
+    </div>
+  </div>
   <footer>
 
   </footer>

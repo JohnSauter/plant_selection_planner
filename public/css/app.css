@@ -1,3 +1,12 @@
+body {
+    background-image: url(../images/garden_bg.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+}
+
 #page-title {
     border-radius: 10px;
     padding: 5px;
@@ -17,6 +26,10 @@
 .nav-button {
     background: black;
     color: white;
+}
+
+.title-bar {
+    background-color: #AABE4D;
 }
 
 .topic-description {
@@ -74,4 +87,12 @@
 .button-delete {
     padding: 10px;
     margin: 10px;
+}
+
+#info-main {
+    width: 75vw;
+    margin-top: 10vh;
+    padding: 50px;
+    opacity: 0.85;
+    border-radius: 25px;
 }
