@@ -9,6 +9,19 @@ const {
 const withAuth = require('../../utils/auth');
 
 /* Routes go here, then the API routes.  */
+router.get('/', async (req, res) => {
+  res.render('gardener_home', {
+    logged_in: req.session.logged_in,
+    page_title: 'Gardener Home',
+  });
+});
+
+router.get('/search', async (req, res) => {
+  res.render('gardener_search', {
+    logged_in: req.session.logged_in,
+    page_title: 'Gardener Search',
+  });
+});
 
 const apiRoutes = require('./api');
 router.use('/api', apiRoutes);
