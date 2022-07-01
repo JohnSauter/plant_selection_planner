@@ -7,7 +7,7 @@ const {
   Garden_zone,
   Plant_type,
   Plant_instance,
-} = require('../../Models');
+} = require('../../models');
 const withAuth = require('../../utils/auth');
 
 /* We keep working SMTP information in environment variables.
@@ -20,7 +20,7 @@ let email_user = process.env.EMAIL_USER;
 let email_password = process.env.EMAIL_PASSWORD;
 
 /* Post to /gardener/api/email sends an email message.  */
-router.post('/email', async (req, res) => {
+router.post('/email', withAuth, async (req, res) => {
   try {
     /* If any of the email information is missing,
      * use the ethereal test site.  */
@@ -62,16 +62,16 @@ router.post('/email', async (req, res) => {
 
     /* The email is from the gardener.  Get her name and
      * email address.  */
-    const the_user_id = req.session.user_id;
-    const the_sequelize_user = await User.findByPk(the_user_id);
+    const user_id = req.session.user_id;
+    const the_sequelize_user = await User.findByPk(user_id);
     if (!the_sequelize_user) {
       res.status(404).end();
       return;
     }
-    const the_user = the_sequelize_user.get({ plain: true });
+    const this_user = the_sequelize_user.get({ plain: true });
 
-    const gardener_name = the_user.name;
-    const gardener_email = the_user.email;
+    const gardener_name = this_user.name;
+    const gardener_email = this_user.email;
     const source_list = '"' + gardener_name + '" <' + gardener_email + '>';
 
     /* The email is to all of the nursery managers.  */
@@ -103,13 +103,47 @@ router.post('/email', async (req, res) => {
         '>';
     }
 
+    /* Get the list of plants desired by this gardener.  */
+    const sequelize_zones = await Garden_zone.findAll({
+      where: { user_id: user_id },
+    });
+    const zones = sequelize_zones.map((element) =>
+      element.get({ plain: true })
+    );
+    const sequelize_plant_instances = await Plant_instance.findAll({
+      where: { garden_zone_id: zones[0].id },
+    });
+    const plant_instances = sequelize_plant_instances.map((element) =>
+      element.get({ plain: true })
+    );
+    let plants_text = '';
+    for (let i = 0; i < plant_instances.length; i++) {
+      if (plants_text) {
+        plants_text = plants_text + ', ';
+      }
+      const the_plant_instance = plant_instances[i];
+      const the_plant_id = the_plant_instance.plant_type_id;
+      const the_sequelize_plant_type = await Plant_type.findByPk(the_plant_id);
+      const the_plant_type = the_sequelize_plant_type.get({ plain: true });
+      plants_text = plants_text + the_plant_type.plant_name;
+    }
+
+    /* Construct the message.  */
+    const plants_plain_text =
+      'I need the following plants for my garden: ' + plants_text + '.';
+    const plants_HTML_text =
+      '<html><body><p>' +
+      'I need the following plants for my garden: ' +
+      plants_text +
+      '.</p></body></html>';
+
     // send mail with defined transport object
     const info = await transporter.sendMail({
       from: source_list,
       to: destination_list,
       subject: 'My Garden Needs',
-      text: 'I need the following plants for my garden',
-      html: '<html><body><p>I need the following plants for my garden</p><body><html>',
+      text: plants_plain_text,
+      html: plants_HTML_text,
     });
 
     console.log('Message sent: %s', info.messageId);
