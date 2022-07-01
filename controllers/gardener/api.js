@@ -103,29 +103,43 @@ router.post('/email', withAuth, async (req, res) => {
         '>';
     }
 
-    /* Get the list of plants desired by this gardener.  */
+    /* Get the list of plants desired by this gardener.
+     * We gather the plants from all the zones, but only
+     * mention each plant once in the message to the
+     * nursery manager.  */
+    const plants_list = {};
     const sequelize_zones = await Garden_zone.findAll({
       where: { user_id: user_id },
     });
     const zones = sequelize_zones.map((element) =>
       element.get({ plain: true })
     );
-    const sequelize_plant_instances = await Plant_instance.findAll({
-      where: { garden_zone_id: zones[0].id },
-    });
-    const plant_instances = sequelize_plant_instances.map((element) =>
-      element.get({ plain: true })
-    );
+    for (let i = 0; i < zones.length; i++) {
+      const sequelize_plant_instances = await Plant_instance.findAll({
+        where: { garden_zone_id: zones[i].id },
+      });
+      const plant_instances = sequelize_plant_instances.map((element) =>
+        element.get({ plain: true })
+      );
+
+      for (let i = 0; i < plant_instances.length; i++) {
+        const the_plant_instance = plant_instances[i];
+        const the_plant_id = the_plant_instance.plant_type_id;
+        const the_sequelize_plant_type = await Plant_type.findByPk(
+          the_plant_id
+        );
+        const the_plant_type = the_sequelize_plant_type.get({ plain: true });
+        const plant_name = the_plant_type.plant_name;
+        plants_list[plant_name] = true;
+      }
+    }
+
     let plants_text = '';
-    for (let i = 0; i < plant_instances.length; i++) {
+    for (the_plant_name in plants_list) {
       if (plants_text) {
         plants_text = plants_text + ', ';
       }
-      const the_plant_instance = plant_instances[i];
-      const the_plant_id = the_plant_instance.plant_type_id;
-      const the_sequelize_plant_type = await Plant_type.findByPk(the_plant_id);
-      const the_plant_type = the_sequelize_plant_type.get({ plain: true });
-      plants_text = plants_text + the_plant_type.plant_name;
+      plants_text = plants_text + the_plant_name;
     }
 
     /* Construct the message.  */
