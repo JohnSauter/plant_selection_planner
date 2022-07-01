@@ -1,4 +1,4 @@
-﻿Plant Selection Planner, June 29, 2022
+﻿Plant Selection Planner, June 30, 2022
 
 
 Description
@@ -6,7 +6,7 @@ A plant database searcher in which a user can retrieve a list of plants that fal
 
 
 Personnel
- Haley Gustafson, John Sauter
+ Haley Gustafson, John Sauter, Ash Carruth
 
 
 Motivation for Development
