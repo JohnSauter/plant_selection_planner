@@ -1,4 +1,5 @@
-/* Paths of the form /gardener... */
+/* Paths of the form /gardener/... */
+
 const router = require('express').Router();
 const {
   User,
@@ -9,14 +10,14 @@ const {
 const withAuth = require('../../utils/auth');
 
 /* Routes go here, then the API routes.  */
-router.get('/', async (req, res) => {
+router.get('/home', withAuth, async (req, res) => {
   res.render('gardener_home', {
     logged_in: req.session.logged_in,
     page_title: 'Gardener Home',
   });
 });
 
-router.get('/search', async (req, res) => {
+router.get('/search', withAuth, async (req, res) => {
   res.render('gardener_search', {
     logged_in: req.session.logged_in,
     page_title: 'Gardener Search',
