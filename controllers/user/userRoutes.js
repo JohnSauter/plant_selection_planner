@@ -15,24 +15,15 @@ const withAuth = require('../../utils/auth');
 router.get('/home', async (req, res) => {
   if (req.session.logged_in) {
     if (req.session.gardener) {
-      res.render('gardener_home', {
-        logged_in: req.session.logged_in,
-        page_title: 'Gardener Home',
-      });
-      return;
-    };
-    if (req.session.nursery_manager) {
-      res.render('nursery_manager_home', {
-        logged_in: req.session.logged_in,
-        page_title: 'Nursery Manager Home',
-      });
+      res.redirect('/gardener/home');
       return;
     }
-  };
-  res.render('front', {
-    logged_in: req.session.logged_in,
-    page_title: 'Plant Selection Planner',
-  });
+    if (req.session.nursery_manager) {
+      res.redirect('/nursery_manager/home');
+      return;
+    }
+  }
+  res.redirect('/');
 });
 
 router.get('/login', async (req, res) => {
