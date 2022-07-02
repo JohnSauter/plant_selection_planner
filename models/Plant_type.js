@@ -39,9 +39,9 @@ Plant_type.init(
     size: {
       // l x w
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
-    life_span: {
+    life_cycle: {
       // annual, biennial, perennial
       type: DataTypes.STRING,
       allowNull: false,
@@ -63,15 +63,38 @@ Plant_type.init(
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
-    season_of_interest_lower: {
-      // early spring = 1, mid spring = 2, late spring = 3, early summer = 4, mid summer = 5, late summer = 6, fall = 7, winter = 8 ---> range
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    // Season of Interest
+    early_spring: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
     },
-    season_of_interest_upper: {
-      // early spring = 1, mid spring = 2, late spring = 3, early summer = 4, mid summer = 5, late summer = 6, fall = 7, winter = 8 ---> range
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    mid_spring: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    late_spring: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    early_summer: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    mid_summer: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    late_summer: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    fall: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    winter: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
     },
   },
   {

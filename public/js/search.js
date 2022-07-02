@@ -1,8 +1,11 @@
 const plantSearchForm = document.querySelector('#plant-search-form');
 
+let searchCriteria;
+
 const searchFormHandler = (event) => {
   event.preventDefault();
 
+  // Collect values from search form
   const hardiness = document.querySelector('#hardiness-zone').value;
   const habit = document.querySelector('#habit').value;
   const lifeCycle = document.querySelector('#life-cycle').value;
@@ -24,7 +27,32 @@ const searchFormHandler = (event) => {
     
   }
 
-  console.log(hardiness, habit, lifeCycle, sunExposure, seasonOfInterest);
+  // Consolidate search values into a single object
+  searchCriteria = {
+    hardiness,
+    habit,
+    lifeCycle,
+    sunExposure,
+    seasonOfInterest
+  };
+
+  findPlants(searchCriteria);
+};
+
+const findPlants = async (criteria) => {
+  if (criteria) {
+    const response = await fetch('/search', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify({ criteria }),
+    });
+    
+    if (response.ok) {
+      document.location.replace('/search');
+    } else {
+      console.log("No data")
+    }
+  }
 };
 
 plantSearchForm.addEventListener('submit', searchFormHandler);
