@@ -1,4 +1,4 @@
-﻿Plant Selection Planner, June 30, 2022
+﻿Plant Selection Planner, July 2, 2022
 
 
 Description
@@ -40,8 +40,8 @@ Task Breakdown
 5. Construct and lay out the user pages based on the user flow design, using the paths to the server
 6. Test and debug
 7. Deploy to Heroku
-
-
+8. Present the application to the class
+9. Submit the application as project 2.
 Preliminary User Flow Design
 
 
@@ -66,7 +66,7 @@ User Interface Design Details
 In this space we will flesh out some details of the user interface.
 
 
-When a user first connects to the application, he must login or sign up for an account.  Signing up requires a username, email address, and password.  Both the username and email address must be unique. 
+When a user first connects to the application, he must login or sign up for an account.  Signing up requires a username, email address, and password.  The username must not already be in use.
 
 
 The main page for the gardener is the list of chosen plants. She can delete and add plants.  When adding a plant she performs a search of the plant database, specifying conditions she requires such as hardiness, and then being able to choose from the filtered list.
@@ -229,25 +229,27 @@ All pages have a header and footer provided by Handlebar.  It contains the mater
 
 1. Front: The front page contains a brief description of the application and buttons to choose whether to log in, sign up as a gardener or sign up as a nursery manager.
 2. Login: If the user chooses to log in, he gets a page which lets him enter his username and password.
-3. Sign_up_as_gardener: If the user chooses to sign up as a gardener, she gets a page which lets her enter her desired username, her desired password, and her email address.  Upon successful creation of her account, an email message is sent to her email address.  We prevent the application from being used for spam by requiring all email addresses be unique, and having no provision for deleting an account.
-4. Sign_up_as_nursery_manager: If the user chooses to sign up as a nursery manager he gets a page which lets him enter his desired username, password and email address.  Upon successful signup an email message is sent to the email address.  In the future we will also let the nursery manager choose which nursery he is managing, and have a way to create new nurseries.
-5. Gardener_home: Once a gardener is logged in she will see a screen listing all of the plants she has chosen for the current zone of her garden. Initially a gardener will have one zone, with a blank name 
+3. Sign_up:
+   1. as_gardener: If the user chooses to sign up as a gardener, she gets a page which lets her enter her desired username, her desired password, and her email address. 
+   2. as_nursery_manager: If the user chooses to sign up as a nursery manager he gets a page which lets him enter his desired username, password and email address.  In the future we will also let the nursery manager choose which nursery he is managing, and have a way to create new nurseries.
+4. Gardener_home: Once a gardener is logged in she will see a screen listing all of the plants she has chosen for the current zone of her garden. Initially a gardener will have one zone, with a blank name 
    1. In the future there will be a way to create new zones, choose a zone to be the current zone, change the name of the current zone and delete the current zone.  If there is only one zone it cannot be deleted.  When a zone is deleted a remaining zone is chosen as the current zone.
    2. For each plant in the zone there will be a way to delete the plant from the zone.
    3. There will be a search button, which will take her to the search page.  The plants she chooses from the search page will be added to the current zone.  
    4. There will be a button to send the current selections to the nursery manager as an e-mail message, with a copy to the gardener so she can print it if she wishes.
-6. Gardener_search: The search page will start by showing all the plants..  Each plant is shown with its formal name, its common name, and a brief description.  In the future we may add a picture of the plant.  There will be a checkbox on each plant to select it, and when the gardener is done with this page she will return to her home page with those plants added to it.  
+5. Gardener_search: The search page will start by showing all the plants..  Each plant is shown with its formal name, its common name, and a brief description.  In the future we may add a picture of the plant.  There will be a checkbox on each plant to select it, and when the gardener is done with this page she will return to her home page with those plants added to it.  
    1. There is a button on each plant to bring up more information about the plant.
    2. There is a way to show only the plants that meet the gardener’s needs, by filtering out those that don’t.
-7. Plant: information about the plant, including a picture in the future.
-8. Nursery_mangager_home: Once a nursery manager is logged in he sees the list of all plants in the database.
+6. Plant: information about the plant, including a picture in the future.
+7. Nursery_mangager_home: Once a nursery manager is logged in he sees the list of all plants in the database.
    1. If he chooses a plant to edit he goes to the nursery_manager_edit_plant page. 
    2. There is a button to add a new plant.
    3. There is a button to let the nursery manager see the selections of a customer by providing the customer’s name.
-   4. We might want a Seed button on the home page for testing in Heroku.
-9. Nursery_manager_customer: When the nursery manager asks to see the selections of a customer he is shown all plants selected by that customer without regard to zones.  If he is in contact with the customer he can make suggestions and watch the list change as she updates her selections.
-10. Nursery_manger_add_plant: When the nursery manager adds a plant he is taken to a page with pull-downs for each category, initially all not checked.  There is also a place for the name of the plant (formal and common), and the description,.  In the future we will add a way to upload a picture.  It is an error to add a plant that already exists, in which case the user should be directed to the nursery_manager_edit_plant page.
-11. Nursery_manager_edit_plant: The nursery manager can change anything about a plant, such as its tolerance for cold weather and whether or not it is in stock.
+   4. We might want a Seed button on the nursery_manager_home page for testing in Heroku.
+   5. In the future we will have a way for the nursery manager to separate his nursery into areas, with plants in each area, similar to the gardener’s garden zones.
+8. Nursery_manager_customer: When the nursery manager asks to see the selections of a customer he is shown all plants selected by that customer without regard to zones.  If he is in contact with the customer he can make suggestions and watch the list change as she updates her selections.
+9. Nursery_manger_add_plant: When the nursery manager adds a plant he is taken to a page with pull-downs for each category, initially all not checked.  There is also a place for the name of the plant (formal and common), and the description,.  In the future we will add a way to upload a picture.  It is an error to add a plant that already exists, in which case the user should be directed to the nursery_manager_edit_plant page.
+10. Nursery_manager_edit_plant: The nursery manager can change anything about a plant, such as its tolerance for cold weather and whether or not it is in stock.
 
 
 Paths
@@ -259,22 +261,24 @@ The front end communicates with the server through paths and HTTP methods.  Give
 1. Front:
    1. Get / (the empty path) loads the front page.
 2. User
-   1. Get /user/home loads the user’s home page, or the front page if he is not logged in.
+   1. Get /user/home loads either
+      1. The front page if the user is not logged in, or
+      2. The gardener_home page if the user is logged in as a gardener, or
+      3. The nursery_manager_home page if the user is logged in as a nursery manager. 
    2. Get /user/login loads the login page.
-   3. Get /user/signup_as_gardener loads the signup_as_gardener page.
-   4. Get /user/signup_as_nursery_manager loads the signup_as_nursery_manager page.  
+   3. Get /user/sign_up_as gardener loads the signup page, with the user_type passed as Gardener.
+   4. Get /user/sign_up_as_nursery_manager loads the signup page, with the user_type passed as Nursery.
    5. Current API routes:
-      1. Post /user/api/login validates the login, returning a success or failure indication.  If there is already a login using this user name, the old login is invalidated.
-      2. Post /user/api/logout Log out the logged-in user.
-      3. Post /user/api/signup_as_gardener validates the signup, returning a success or failure indication. 
-      4. Post /user/api/signup_as_nursery_manager validates the signup, returning a success or failure.  
+      1. Post /user/api/signup/:userType validates the sign up, returning a success or failure indication.
+      2. Post /user/api/login validates the login, returning a success or failure indication. 
+      3. Post /user/api/logout Log out the logged-in user.
    6. Future API routes:
-      1. Get user/api/zone returns the user’s current garden zone. (future)
-      2. Get user/api/zones returns all of this user’s garden zones. (future)
-      3. Put user/api/zone/:zone_id changes the user’s current zone. (future)
-      4. Post user/api/zone/:zone_name creates a new garden_zone.  It is an error to create two zones with the same name. (future)
-      5. Put user/api/zone/:zone_id/:zone_name changes the name of garden_zone zone_id to zone_name. (future)
-      6. Delete user/api/zone/:zone_id deletes a garden_zone.  If there is only one zone it cannot be deleted.  When a zone is deleted some other zone is chosen to be the current zone; it is returned. (future)
+      1. Get user/api/zone returns the user’s current garden zone
+      2. Get user/api/zones returns all of this user’s garden zones
+      3. Put user/api/zone/:zone_id changes the user’s current zone
+      4. Post user/api/zone/:zone_name creates a new garden_zone.  It is an error to create two zones with the same name.
+      5. Put user/api/zone/:zone_id/:zone_name changes the name of garden_zone zone_id to zone_name.
+      6. Delete user/api/zone/:zone_id deletes a garden_zone.  If there is only one zone it cannot be deleted.  When a zone is deleted some other zone is chosen to be the current zone; it is returned.
 3. Gardener:
    1. Get gardener/home loads the gardener_home page. 
    2. Get gardener/search loads the gardener_search page.
@@ -297,13 +301,13 @@ The front end communicates with the server through paths and HTTP methods.  Give
 Data Structures
 
 
-1. The user model has an id, name,email address, hashed password, and user_type.
-   1. The user_type will be either gardener or nursery_manager.  
+1. The user model has an id, name, email address, hashed password, and user_type.
+   1. The user_type will be either “Gardener” or “Nursery”.  
    2. A user has many garden_zones.
 2. The garden_zone model has an id, name, and user_id.
    1. A garden zone belongs to a user.
    2. A garden_zone has many plant_instances.
-3. The plant_type model has an id, common name, formal name, and criteria.  In the future we may add a picture.
+3. The plant_type model has an id, plant_name, description, and criteria.  In the future we may add a picture.
    1. A plant_type has many plant_instances.
 4. The plant_instance model has an id, plant_type_id, and garden_zone_id.  It serves as the intermediate model in the many-to-many relationship between garden_zone and plant_type.
 
