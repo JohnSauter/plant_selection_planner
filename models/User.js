@@ -37,7 +37,7 @@ User.init(
       },
     },
     user_type: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING,  /* Gardener or Nursery */
       allowNull: false,
     },
   },
