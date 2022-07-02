@@ -10,6 +10,7 @@ const withAuth = require('../../utils/auth');
 /* The empty route shows the front page.  */
 router.get('/', async (req, res) => {
   res.render('front', {
+    username: req.session.username,
     logged_in: req.session.logged_in,
     page_title: 'Plant Selection Planner',
   });

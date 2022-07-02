@@ -93,6 +93,7 @@ router.post('/signup_as_gardener', async (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = userData.id;
+      req.session.username = userData.name;
       req.session.logged_in = true;
       req.session.gardener = true;
       req.session.nursery_manager = false;
@@ -116,6 +117,7 @@ router.post('/signup_as_nursery_manager', async (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = userData.id;
+      req.session.username = userData.name;
       req.session.logged_in = true;
       req.session.gardener = false;
       req.session.nursery_manager = true;
@@ -154,6 +156,7 @@ router.post('/login', async (req, res) => {
      * or a nursery manager.  */
     req.session.save(() => {
       req.session.user_id = userData.id;
+      req.session.username = userData.name;
       req.session.logged_in = true;
       if (userData.user_type == 'Gardener') {
         req.session.gardener = true;
