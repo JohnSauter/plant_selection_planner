@@ -85,6 +85,7 @@ router.post('/signup/:userType', async (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = userData.id;
+      req.session.username = userData.name;
       req.session.logged_in = true;
       if (user_type == 'Gardener') {
         req.session.gardener = true;
@@ -130,6 +131,7 @@ router.post('/login', async (req, res) => {
 
     /* Update the session.  */
     req.session.user_id = user_data.id;
+    req.session.username = user_data.name;
     if (user_data.user_type == 'Gardener') {
       req.session.gardener = true;
       req.session.nursery_manager = false;
