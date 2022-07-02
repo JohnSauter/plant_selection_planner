@@ -15,10 +15,22 @@ router.use('/api', apiRoutes);
 
 router.get('/home', (req, res) => {
     res.render("nursery_manager_home");
+
 })
 
+router.get('/customer/:customer_id', (req, res) => {
+    res.render("nursery_manager_customer");
 
+})
 
+router.get('/add_plant', (req, res) => {
+    res.render("nursery_manager_add_plant");
 
+})
+
+router.get('/edit_plant/:plant_type_id', (req, res) => {
+    res.render("nursery_manager_edit_plant");
+
+})
 
 module.exports = router;
