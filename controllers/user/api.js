@@ -76,27 +76,27 @@ router.post('/signup/:userType', async (req, res) => {
       return;
     }
 
-    const userData = await User.create({
+    const sequelize_user_data = await User.create({
       name: name,
       email: email,
       password: password,
       user_type: user_type,
     });
 
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.username = userData.name;
-      req.session.logged_in = true;
-      if (user_type == 'Gardener') {
-        req.session.gardener = true;
-        req.session.nursery_manager = false;
-      }
-      if (user_type == 'Nursery') {
-        req.session.gardener = false;
-        req.session.nursery_manager = true;
-      }
-      res.status(201).json(userData);
-    });
+    const user_data = sequelize_user_data.get({ plain: true });
+    req.session.user_id = user_data.id;
+    req.session.username = user_data.name;
+    req.session.logged_in = true;
+    if (user_type == 'Gardener') {
+      req.session.gardener = true;
+      req.session.nursery_manager = false;
+    }
+    if (user_type == 'Nursery') {
+      req.session.gardener = false;
+      req.session.nursery_manager = true;
+    }
+    req.session.save();
+    res.status(201).end();
   } catch (err) {
     req.session.logged_in = false;
     res.status(400).json({ error: 'Signup failed.', err: err });
@@ -142,8 +142,7 @@ router.post('/login', async (req, res) => {
     }
     req.session.logged_in = true;
     req.session.save();
-    res
-      .status(200).end();
+    res.status(200).end();
   } catch (err) {
     res.status(400).json({ message: 'login failure', err: err });
   }
