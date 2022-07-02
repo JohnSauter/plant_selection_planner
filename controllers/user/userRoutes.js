@@ -1,10 +1,12 @@
+/* Paths of the form /user/...  */
+
 const router = require('express').Router();
 const {
   User,
   Garden_zone,
   Plant_type,
   Plant_instance,
-} = require('../../Models');
+} = require('../../models');
 const withAuth = require('../../utils/auth');
 
 /* Take the browser to the home page.  If the user is not
@@ -41,16 +43,18 @@ router.get('/login', async (req, res) => {
 });
 
 router.get('/sign_up_as_gardener', async (req, res) => {
-  res.render('sign_up_as_gardener', {
+  res.render('sign_up', {
     logged_in: req.session.logged_in,
     page_title: 'Sign Up as Gardener',
+    user_type: 'Gardener',
   });
 });
 
 router.get('/sign_up_as_nursery_manager', async (req, res) => {
-  res.render('sign_up_as_nursery_manager', {
+  res.render('sign_up', {
     logged_in: req.session.logged_in,
     page_title: 'Sign Up as Nursery Manager',
+    user_type: 'Nursery',
   });
 });
 

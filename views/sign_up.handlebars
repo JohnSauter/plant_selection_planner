@@ -1,0 +1,37 @@
+<main>
+  <h1>{{page_title}}</h1>
+  <form id="signup-form" data-user-type="{{user_type}}">
+    <div class="grid-container">
+      <div class="grid-x grid-margin-x">
+        <div class="cell">
+          <label>Name
+            <input type="text" id='name-signup' placeholder="name">
+          </label>
+        </div>
+        <div class="cell">
+          <label>email
+            <input type="text" id='email-signup' placeholder="email">
+          </label>
+        </div>
+        <div class="cell">
+          <label>password
+            <input type="password" id='password-signup' placeholder="password">
+          </label>
+        </div>
+        <button class='button' type='submit'>signup</button>
+      </div>
+    </div>
+    </div>
+  </form>
+
+  <div class="reveal" id="signup-failure" data-reveal>
+    <h1>Signup Failure</h1>
+    <p id="signup-failure-message"></p>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+</main>
+
+<script src='/js/sign_up.js'></script>

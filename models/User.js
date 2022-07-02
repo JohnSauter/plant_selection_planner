@@ -24,7 +24,7 @@ User.init(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: false,
       validate: {
         isEmail: true,
       },
@@ -37,7 +37,7 @@ User.init(
       },
     },
     user_type: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING,  /* Gardener or Nursery */
       allowNull: false,
     },
   },
