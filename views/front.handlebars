@@ -1,5 +1,10 @@
 <main>
-  <p>Choose plants for your garden.</p>
+  {{> search}}
+  {{#if logged_in}}
+  Welcome back, {{user}}!
+  {{else}}
+  <p></p>
+  <p>Sign in to add plants to your collection!</p>
   <p>If you already have an account, click the login
     button in the navigation bar above to sign in.
     If you do not, you can sign up as a gardener
@@ -9,6 +14,7 @@
     <button class='button nav-button' id='signup-gardener'>Sign up as a gardener</button>
     <button class='button nav-button' id='signup-nursery_manager'>Sign up as a nursery manager</button>
   </p>
+  {{/if}}
 </main>
 
 <script src='/js/front.js'></script>
