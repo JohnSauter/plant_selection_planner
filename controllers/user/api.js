@@ -143,8 +143,7 @@ router.post('/login', async (req, res) => {
     req.session.logged_in = true;
     req.session.save();
     res
-      .status(200)
-      .json({ user: user_data, message: 'You are now logged in!' });
+      .status(200).end();
   } catch (err) {
     res.status(400).json({ message: 'login failure', err: err });
   }
@@ -156,6 +155,7 @@ router.post('/logout', (req, res) => {
     req.session.logged_in = false;
     req.session.gardener = false;
     req.session.nursery_manager = false;
+    req.session.username = '';
     req.session.save();
     res.status(204).end();
     return;
