@@ -35,8 +35,8 @@ const searchFormHandler = (event) => {
     sunExposure,
     seasonOfInterest
   };
-
-  findPlants(searchCriteria);
+  findPlants2(searchCriteria);
+  //findPlants(searchCriteria);
 };
 
 const findPlants = async (criteria) => {
@@ -48,11 +48,28 @@ const findPlants = async (criteria) => {
     });
     
     if (response.ok) {
-      document.location.replace('/search');
+      document.location.replace('/search/results');
     } else {
       console.log("No data")
     }
   }
 };
+
+const findPlants2 = async (criteria) => {
+  if (criteria) {
+    const criteriaString = JSON.stringify(criteria);
+    const response = await fetch('/search/' + criteriaString, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json'},
+    });
+    
+    if (response.ok) {
+      console.log("response ok")
+    } else {
+      console.log("No data")
+    }
+  }
+};
+
 
 plantSearchForm.addEventListener('submit', searchFormHandler);

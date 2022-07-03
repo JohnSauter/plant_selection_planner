@@ -17,16 +17,6 @@ router.get('/home', withAuth, async (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-=======
-router.get('/search', withAuth, async (req, res) => {
-  res.render('gardener_search', {
-    logged_in: req.session.logged_in,
-    page_title: 'Gardener Search',
-  });
-});
-
->>>>>>> main
 const apiRoutes = require('./api');
 router.use('/api', apiRoutes);
 
