@@ -41,6 +41,10 @@ GNU AGPLv3
 ## Features
 A gardener can consider only those plants that meet her needs.
 
+## Technologies Used
+
+Foundation for Sites, Node.js, Express.js, Handlebars.js, MySQL, Sequelize, and nodemailer
+
 ## GitHub URL
 
 https://github.com/JohnSauter/plant_selection_planner
