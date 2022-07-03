@@ -49,6 +49,10 @@ https://github.com/JohnSauter/plant_selection_planner
 
 TBD
 
+## Screenshot
+
+![screenshot of Plant Selection Planner front page](./assets/images/plant_selection_planner.png)
+
 ## Questions
 
 If you have any questions, contact me.
