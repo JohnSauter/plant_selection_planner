@@ -1,4 +1,4 @@
-﻿Plant Selection Planner, July 2, 2022
+﻿Plant Selection Planner, July 3, 2022
 
 
 Description
@@ -29,7 +29,7 @@ I want to provide my customers with the plants that meet their needs without was
 
 
 Technologies
-Foundation, Node.js, Express.js, Handlebars.js, MySQL, Sequelize, nodemailer
+Foundation for sites, Node.js, Express.js, Handlebars.js, MySQL, Sequelize, and nodemailer
 
 
 Task Breakdown
@@ -41,7 +41,6 @@ Task Breakdown
 6. Test and debug
 7. Deploy to Heroku
 8. Present the application to the class
-9. Submit the application as project 2.
 Preliminary User Flow Design
 
 
@@ -227,11 +226,11 @@ For the next stage of the design, we describe each page and how it will operate.
 All pages have a header and footer provided by Handlebar.  It contains the material that must be placed at the beginning and end of every page.  The navigation header is tailored by Handlebar to display a logout button only if the user is logged in, and a login button otherwise.  Other buttons can also be made visible if they are needed.  We might have a home button, for example, which will take the user to his appropriate home page, depending on whether he is a gardener or a nursery manager.  Each Handlebar layout  provides HTML starting with <main> and ending with </main>.
 
 
-1. Front: The front page contains a brief description of the application and buttons to choose whether to log in, sign up as a gardener or sign up as a nursery manager.
+1. Front: The front page contains a brief description of the application and buttons to choose whether to log in, sign up as a gardener or sign up as a nursery manager.  The user can search the plant database but cannot save any results without logging in or signing up.
 2. Login: If the user chooses to log in, he gets a page which lets him enter his username and password.
 3. Sign_up:
    1. as_gardener: If the user chooses to sign up as a gardener, she gets a page which lets her enter her desired username, her desired password, and her email address. 
-   2. as_nursery_manager: If the user chooses to sign up as a nursery manager he gets a page which lets him enter his desired username, password and email address.  In the future we will also let the nursery manager choose which nursery he is managing, and have a way to create new nurseries.
+   2. as_nursery_manager: If the user chooses to sign up as a nursery manager he gets a page which lets him enter his desired username, password and email address. 
 4. Gardener_home: Once a gardener is logged in she will see a screen listing all of the plants she has chosen for the current zone of her garden. Initially a gardener will have one zone, with a blank name 
    1. In the future there will be a way to create new zones, choose a zone to be the current zone, change the name of the current zone and delete the current zone.  If there is only one zone it cannot be deleted.  When a zone is deleted a remaining zone is chosen as the current zone.
    2. For each plant in the zone there will be a way to delete the plant from the zone.
