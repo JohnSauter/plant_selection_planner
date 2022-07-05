@@ -78,13 +78,17 @@ body {
     margin: 10px;
 }
 
+.plant-card {
+    height: 100%;
+}
+
 .search-form-section {
     border-bottom: 1px solid white;
 }
 
 #info-main {
     width: 75vw;
-    margin-top: 10vh;
+    margin-top: 5vh;
     padding: 50px;
     opacity: 0.85;
     border-radius: 25px;

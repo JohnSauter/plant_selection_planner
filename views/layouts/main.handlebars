@@ -15,8 +15,13 @@
       {{#if logged_in}}
       <nav class='title-bar-left'>
         <ul class='menu row align-justify'>
-          <li><button class='button' id='home'>Plant Selection Planner</button></li>
-          <li><button class='button' id='logout'>Logout</button></li>
+          <div>
+            <li><button class='button' id='home'>Plant Selection Planner</button></li>
+          </div>
+          <div class="grid-x">
+            <li><button class='button' id='my-collection'>My Collection</button></li>
+            <li><button class='button' id='logout'>Logout</button></li>
+          </div>
         </ul>
       </nav>
       {{else}}
