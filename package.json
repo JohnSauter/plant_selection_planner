@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/JohnSauter/plant_selection_planner.git"
   },
-  "author": "Haley Gustafson and John Sauter",
+  "author": "Haley Gustafson, John Sauter, and Ash Carruth",
   "license": "AGPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/JohnSauter/plant_selection_planner/issues"

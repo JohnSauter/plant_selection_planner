@@ -41,13 +41,21 @@ GNU AGPLv3
 ## Features
 A gardener can consider only those plants that meet her needs.
 
+## Technologies Used
+
+Foundation for Sites, Node.js, Express.js, Handlebars.js, MySQL, GitHub, Heroku, JawsDB, Sequelize, and nodemailer
+
 ## GitHub URL
 
 https://github.com/JohnSauter/plant_selection_planner
 
 ## Heroku deployment
 
-TBD
+https://beautiful-yosemite-29690.herokuapp.com/
+
+## Screenshot
+
+![screenshot of Plant Selection Planner front page](./assets/images/plant_selection_planner.png)
 
 ## Questions
 
