@@ -11,7 +11,8 @@ let searchCriteria;
 const searchFormHandler = (event) => {
   event.preventDefault();
 
-  // Collect values from search form
+
+// Collect values from search form
   const hardiness = document.querySelector('#hardiness-zone').value;
   const habit = document.querySelector('#habit').value;
   const lifeCycle = document.querySelector('#life-cycle').value;
@@ -30,9 +31,7 @@ const searchFormHandler = (event) => {
     lateSummer: document.querySelector('#late-summer').checked,
     fall: document.querySelector('#fall').checked,
     winter: document.querySelector('#winter').checked
-    
   }
-
   // Consolidate search values into a single object
   searchCriteria = {
     hardiness,
@@ -41,7 +40,7 @@ const searchFormHandler = (event) => {
     sunExposure,
     seasonOfInterest
   };
-
+  console.log(searchCriteria)
   // Send form data to server for server to query database and render results on page
   findPlants(searchCriteria);
 };
@@ -62,7 +61,6 @@ const findPlants = async (criteria) => {
     if (response.ok) {
       const data = await response.json();
     
-
       renderResults(data);
     } else {
       console.log("No data")
@@ -123,6 +121,7 @@ const renderResults = (data) => {
 
     resultsContainer.innerHTML = results;
     addPlant = document.querySelector("#add-plant");
+    addPlant.addEventListener('click', addPlantHandler);
   } else {
     resultsHeading.innerText = "Results";
     resultsContainer.innerText = "No plants found matching those criteria";
@@ -131,4 +130,12 @@ const renderResults = (data) => {
 
 // Event listeners
 plantSearchForm.addEventListener('submit', searchFormHandler);
-addPlant.addEventListener('click', addPlantHandler);
+
+// Check if coming from front page
+
+if (localStorage.getItem("userSearch")) {
+  searchCriteria = JSON.parse(localStorage.getItem("userSearch"));
+  console.log(searchCriteria);
+  localStorage.removeItem("userSearch");
+  findPlants(searchCriteria);
+};
