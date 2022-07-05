@@ -16,14 +16,7 @@ const signupFormHandler = async (event) => {
     document.location.replace('/user/home');
   } else {
     /* Extract the error message from the response.  */
-    let the_string = '';
-    let utf8decoder = new TextDecoder();
-    const reader = response.body.getReader();
-    for await (const chunk of readChunks(reader)) {
-      const string_chunk = utf8decoder.decode(chunk);
-      the_string = the_string + string_chunk;
-    }
-    const the_message = JSON.parse(the_string);
+    const the_message = await response.json();
     let message_text = the_message.error;
     const err = the_message.err;
     /* If the back end gets an error that it did not anticipate, 
@@ -42,16 +35,3 @@ const signupFormHandler = async (event) => {
 document
   .querySelector('#signup-form')
   .addEventListener('submit', signupFormHandler);
-
-// readChunks() reads from the provided reader and yields the results into an async iterable
-function readChunks(reader) {
-  return {
-    async *[Symbol.asyncIterator]() {
-      let readResult = await reader.read();
-      while (!readResult.done) {
-        yield readResult.value;
-        readResult = await reader.read();
-      }
-    },
-  };
-}
