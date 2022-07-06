@@ -1,6 +1,14 @@
 <main>
-
+  <h3>My Collection</h3>
+  <div class="grid-container">
+    <div class="grid-x align-spaced" id="results-container">
+      {{#each collection as |plant|}}
+      {{> collection}}
+      {{/each}}
+    </div>
+  </div>
   <button class='button' id='send-email'>send email</button>
+
 
 </main>
 
