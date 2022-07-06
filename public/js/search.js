@@ -2,16 +2,16 @@
 const plantSearchForm = document.querySelector('#plant-search-form');
 const resultsHeading = document.querySelector('#results-heading');
 const resultsContainer = document.querySelector('#results-container');
-let addPlant;
+let addPlantBtns;
 
 // Global Variables
 let searchCriteria;
 
-// Form/Button Handlers
+
+// SEARCH FORM/RESULTS DISPLAY
+// Form Handler
 const searchFormHandler = (event) => {
   event.preventDefault();
-
-
 // Collect values from search form
   const hardiness = document.querySelector('#hardiness-zone').value;
   const habit = document.querySelector('#habit').value;
@@ -45,11 +45,8 @@ const searchFormHandler = (event) => {
   findPlants(searchCriteria);
 };
 
-//const addPlantHandler = (event) => {
-//function to add plant to gardener's collection if they are logged in/take them to their home page or the signup page
-//}
-
-// Fetch function within form handler
+// Functions within form handler
+// Fetch function to find plants based on search criteria
 const findPlants = async (criteria) => {
   if (criteria) {
     const response = await fetch('/search/api', {
@@ -57,10 +54,8 @@ const findPlants = async (criteria) => {
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({ criteria }),
     });
-    
     if (response.ok) {
       const data = await response.json();
-    
       renderResults(data);
     } else {
       console.log("No data")
@@ -71,9 +66,7 @@ const findPlants = async (criteria) => {
 // Function to dynamically display search results on page
 const renderResults = (data) => {
   resultsHeading.innerText = "Results";
-
   let results = "";
-
   if (data) {
     data.forEach(plant => {
       // Gather sun exposure and season of interest for each plant into arrays for later display
@@ -81,7 +74,6 @@ const renderResults = (data) => {
       let sunExposureTrues = []
       const seasonOfInterestArray = ["early_spring", "mid_spring", "late_spring", "early_summer", "mid_summer", "late_summer", "fall", "winter"];
       let seasonOfInterestTrues = []
-
       sunExposureArray.forEach(item => {
         console.log(item)
         console.log(plant)
@@ -92,13 +84,12 @@ const renderResults = (data) => {
           sunExposureTrues.push(item)
         };
       });
-
       seasonOfInterestArray.forEach(item => {
         if (plant.item) {
           seasonOfInterestTrues.push(item)
         };
-      });    
-
+      });
+      //add new card to results
       results += `
       <div class="cell columns small-12 large-3 plant-card">
         <div class="card plant-card">
@@ -112,27 +103,63 @@ const renderResults = (data) => {
             <p>Hardiness zone: ${plant.hardiness_zone_lower}-${plant.hardiness_zone_upper}</p>
             <p>Sun Exposure: ${sunExposureTrues[0]} - ${sunExposureTrues.slice(-1)[0]}</p>
             <p>Sun Exposure: ${seasonOfInterestTrues[0]} - ${seasonOfInterestTrues.slice(-1)[0]}</p>
-            <button class='button' id='add-plant'>Add to collection</button>
+            <button class='button add-plant' data-plant-id="${plant.id}">Add to collection</button>
           </div>
         </div>
       </div>
       `
     });
-
+    //display resultts in resultsContainer
     resultsContainer.innerHTML = results;
-    addPlant = document.querySelector("#add-plant");
-    addPlant.addEventListener('click', addPlantHandler);
+    //grab the add plant buttons
+    addPlantBtns = document.querySelectorAll(".add-plant");
+    //add event listener to the add plant buttons
+    addPlantBtns.forEach(button => {
+      button.addEventListener('click', addPlantHandler);
+    });
   } else {
     resultsHeading.innerText = "Results";
     resultsContainer.innerText = "No plants found matching those criteria";
   };
 };
 
-// Event listeners
+// Event listener
 plantSearchForm.addEventListener('submit', searchFormHandler);
 
-// Check if coming from front page
 
+// ADD PLANT TO COLLECTION
+// Button Handler
+const addPlantHandler = (event) => {
+  event.preventDefault();
+  // Identify the plant id of the button clicked
+  plantID = event.target.attributes['data-plant-id'].value;
+  addPlantToCollection(plantID);
+}
+
+//function to add plant to gardener's collection if they are logged in/prompt them to sign up if they are not
+const addPlantToCollection = async (plantID) => {
+  if (plantID) {
+    const requestBody = {"plantID": plantID};
+    console.log(requestBody);
+    const response = await fetch('/gardener/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify(requestBody)
+    });
+    if (response.ok) {
+      console.log(response.json());
+      console.log("Plant successfully added to collection");
+    } else {
+      console.log("Plant not added");
+    }
+  }
+};
+
+
+
+
+
+// Check if coming from front page
 if (localStorage.getItem("userSearch")) {
   searchCriteria = JSON.parse(localStorage.getItem("userSearch"));
   console.log(searchCriteria);

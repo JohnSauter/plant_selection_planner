@@ -1,6 +1,21 @@
 <main>
-
+  <h3>My Collection</h3>
+  <div class="grid-container">
+    <div class="grid-x align-spaced" id="results-container">
+      {{#each collection as |plant|}}
+      {{> collection}}
+      {{/each}}
+    </div>
+  </div>
   <button class='button' id='send-email'>send email</button>
+
+<div class="reveal" id="email-response" data-reveal>
+    <h1>Email response</h1>
+    <p id="email-response-message"></p>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 
 </main>
 

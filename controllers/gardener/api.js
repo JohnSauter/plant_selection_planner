@@ -20,12 +20,66 @@ let email_secure = process.env.EMAIL_SECURE;
 let email_user = process.env.EMAIL_USER;
 let email_password = process.env.EMAIL_PASSWORD;
 
+/* Function to replace < with &lt;, > with &gt;,
+ * and & with &amp; so text can be displayed as HTML.  */
+function HTML_safe(the_string) {
+  /* Ampersand must be replaced first, because the other
+   * replacements depend on its HTML meaning.  */
+  const ampersand_mark = RegExp('&', 'g');
+  let new_string = the_string.replace(ampersand_mark, '&amp;');
+  const less_mark = RegExp('<', 'g');
+  new_string = the_string.replace(less_mark, '&lt;');
+  const greater_mark = RegExp('>', 'g');
+  new_string = new_string.replace(greater_mark, '&gt;');
+  return new_string;
+}
+
+// Add plant to a user's collection
+router.post('/', withAuth, async (req, res) => {
+  // Get plant_type_id
+  const plantID = req.body.plantID;
+  // Get user_id
+  const userID = req.session.user_id;
+  // Get garden_zone_id from user_id, or create one if one doesn't exist
+  try {
+    let gardenZoneData = await Garden_zone.findOne({
+      where: { user_id: userID },
+    });
+    // If user doesn't have a garden zone, create one and grab its ID
+    if (!gardenZoneData) {
+      try {
+        gardenZoneData = await Garden_zone.create({
+          user_id: userID,
+        });
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    }
+
+    const gardenZoneID = gardenZoneData.get({ plain: true }).id;
+
+    // Create plant instance from plantID and gardenZoneID
+    try {
+      await Plant_instance.create({
+        plant_type_id: plantID,
+        garden_zone_id: gardenZoneID,
+      });
+      res.json('Plant Instance created');
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 /* Post to /gardener/api/email sends an email message.  */
 router.post('/email', withAuth, async (req, res) => {
   try {
     /* If any of the email information is missing,
      * use the ethereal test site.  */
     let transporter = null;
+    let email_to_test_account = false;
     if (
       !email_host ||
       !email_port ||
@@ -35,6 +89,7 @@ router.post('/email', withAuth, async (req, res) => {
     ) {
       // Generate test SMTP service account from ethereal.email
       // Only needed if you don't have a real mail account for testing
+      email_to_test_account = true;
       const testAccount = await nodemailer.createTestAccount();
       // create reusable transporter object using the default SMTP transport
       transporter = nodemailer.createTransport({
@@ -161,13 +216,22 @@ router.post('/email', withAuth, async (req, res) => {
       html: plants_HTML_text,
     });
 
-    console.log('Message sent: %s', info.messageId);
+    let response_message =
+      '<p>Message ID is ' + HTML_safe(info.messageId) + '.</p>';
     // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
     // Preview only available when sending through an Ethereal account
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-    res.status(200).end();
+    if (email_to_test_account) {
+      response_message =
+        response_message +
+        '<p>Preview URL: ' +
+        HTML_safe(nodemailer.getTestMessageUrl(info)) +
+        '.</p>';
+      // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+    } else {
+      response_message = response_message + '<p>Message sent.</p>';
+    }
+    res.status(200).json({ message: response_message });
   } catch (err) {
     res.status(500).json(err);
   }
