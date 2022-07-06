@@ -40,6 +40,7 @@ router.get('/home', withAuth, async (req, res) => {
     });
     const collection = collectionData.map((plants) => plants.get({ plain: true} ));
 
+    // Convert sun/soi values to a range
     collection.forEach(plant => {
       plant.plant_type.sunExposureRange = "";
       plant.plant_type.seasonOfInterestRange = "";
