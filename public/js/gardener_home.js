@@ -8,14 +8,22 @@ const send_email = async () => {
       headers: { 'Content-Type': 'application/json' },
     });
 
-    if (response.ok) {
-      alert('email sent');
-    } else {
-      alert('Failed to send email');
+    /* Extract the message from the response.  */
+    const the_message = await response.json();
+    let message_text = the_message.message;
+    const err = the_message.err;
+    /* If the back end gets an error that it did not anticipate,
+     * include diagnostic information.  */
+    if (err) {
+      const err_text = JSON.stringify(err, null, 4);
+      message_text = message_text + err_text;
     }
+    const text_loc = document.getElementById('email-response-message');
+    text_loc.innerHTML = message_text;
+
+    $('#email-response').foundation('open');
   } catch (err) {
     alert('email function failed');
-    console.log(err);
   }
 };
 
