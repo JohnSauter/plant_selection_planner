@@ -39,7 +39,7 @@ Haley Gustafson, John Sauter, Ash Carruth
 GNU AGPLv3
 
 ## Features
-A gardener can consider only those plants that meet her needs.
+A gardener can consider only those plants that meet their needs.
 
 ## Technologies Used
 
