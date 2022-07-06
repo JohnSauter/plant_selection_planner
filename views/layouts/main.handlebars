@@ -20,7 +20,12 @@
             <li><button class='button' id='home'>Plant Selection Planner</button></li>
           </div>
           <div class="grid-x">
+            {{#if gardener}}
             <li><button class='button' id='my-collection'>My Collection</button></li>
+            {{/if}}
+            {{#if nursery_manager}}
+            <li><button class='button' id='my-collection'>My Nursery</button></li>
+            {{/if}}
             <li><button class='button' id='logout'>Logout</button></li>
           </div>
         </ul>

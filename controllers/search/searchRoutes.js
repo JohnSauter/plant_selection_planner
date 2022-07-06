@@ -10,20 +10,10 @@ const {
 const withAuth = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
-  const plantData = await Plant_type.findAll();
-  const plants = plantData.map((plant) => plant.get({ plain: true }));
-  console.log(plants)
-
-  res.render('search', { plants });
-});
-
-router.get('/results', async (req, res) => {
   res.render('search', {
     logged_in: req.session.logged_in,
-    page_title: 'Results',
-  });
+    page_title: 'Results',})
 });
-
 
 const apiRoutes = require('./api');
 router.use('/api', apiRoutes);

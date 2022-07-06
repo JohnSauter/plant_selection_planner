@@ -63,6 +63,8 @@ const findPlants = async (criteria) => {
   }
 };
 
+const snakeToSentence = (snake) => snake.split("_").filter(x => x.length > 0).map((x) => (x.charAt(0).toUpperCase() + x.slice(1))).join(" ");
+
 // Function to dynamically display search results on page
 const renderResults = (data) => {
   resultsHeading.innerText = "Results";
@@ -75,20 +77,29 @@ const renderResults = (data) => {
       const seasonOfInterestArray = ["early_spring", "mid_spring", "late_spring", "early_summer", "mid_summer", "late_summer", "fall", "winter"];
       let seasonOfInterestTrues = []
       sunExposureArray.forEach(item => {
-        console.log(item)
-        console.log(plant)
-        console.log(plant.item)
-        console.log(plant.full_sun)
-        if (plant.item) {
-          console.log(plant.item)
-          sunExposureTrues.push(item)
+        if (plant[item]) {
+          sunExposureTrues.push(snakeToSentence(item))
         };
       });
       seasonOfInterestArray.forEach(item => {
-        if (plant.item) {
-          seasonOfInterestTrues.push(item)
+        if (plant[item]) {
+          seasonOfInterestTrues.push(snakeToSentence(item))
         };
       });
+
+      // Capture sun exposure and season of interest ranges depending on whether there are 1 or more
+      let sunExposureRange = "";
+      let seasonOfInterestRange = "";
+      if (sunExposureTrues.length > 1) {
+        sunExposureRange = sunExposureTrues[0] + " to " + sunExposureTrues.slice(-1)[0];
+      } else {
+        sunExposureRange = seasonOfInterestTrues[0];
+      };
+      if (seasonOfInterestTrues.length > 1) {
+        seasonOfInterestRange = seasonOfInterestTrues[0] + " to " + seasonOfInterestTrues.slice(-1)[0];
+      } else {
+        seasonOfInterestRange = seasonOfInterestTrues[0];
+      };
       //add new card to results
       results += `
       <div class="cell columns small-12 large-3 plant-card">
@@ -98,11 +109,11 @@ const renderResults = (data) => {
               <h4>${plant.plant_name}</h4>
             </div>
             <p>${plant.description}</p>
-            <p>Life cycle: ${plant.life_cycle}</p>
-            <p>Habit: ${plant.habit}</p>
+            <p>Life cycle: ${snakeToSentence(plant.life_cycle)}</p>
+            <p>Habit: ${snakeToSentence(plant.habit)}</p>
             <p>Hardiness zone: ${plant.hardiness_zone_lower}-${plant.hardiness_zone_upper}</p>
-            <p>Sun Exposure: ${sunExposureTrues[0]} - ${sunExposureTrues.slice(-1)[0]}</p>
-            <p>Sun Exposure: ${seasonOfInterestTrues[0]} - ${seasonOfInterestTrues.slice(-1)[0]}</p>
+            <p>Sun Exposure: ${sunExposureRange}</p>
+            <p>Sun Exposure: ${seasonOfInterestRange}</p>
             <button class='button add-plant' data-plant-id="${plant.id}">Add to collection</button>
           </div>
         </div>
