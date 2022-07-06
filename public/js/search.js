@@ -144,7 +144,11 @@ const addPlantHandler = (event) => {
   event.preventDefault();
   // Identify the plant id of the button clicked
   plantID = event.target.attributes['data-plant-id'].value;
-  addPlantToCollection(plantID);
+  const addedCheck = addPlantToCollection(plantID)
+  if (addedCheck) {
+    event.target.classList.add("added-plant-button");
+    event.target.innerText = "Added!"
+  }
 }
 
 //function to add plant to gardener's collection if they are logged in/prompt them to sign up if they are not
@@ -158,17 +162,15 @@ const addPlantToCollection = async (plantID) => {
       body: JSON.stringify(requestBody)
     });
     if (response.ok) {
-      console.log(response.json());
       console.log("Plant successfully added to collection");
+      return true
     } else {
+      window.alert("Please login or sign up to add plants to your collection!")
       console.log("Plant not added");
+      return false
     }
   }
 };
-
-
-
-
 
 // Check if coming from front page
 if (localStorage.getItem("userSearch")) {

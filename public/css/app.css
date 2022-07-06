@@ -62,6 +62,10 @@ body {
     border-radius: 10px;
 }
 
+.added-plant-button {
+    background-color: #AABE4D;
+}
+
 .button-box {
     display: flex;
     justify-content: left;

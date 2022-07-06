@@ -41,6 +41,8 @@ router.get('/home', withAuth, async (req, res) => {
     res.render("gardener_home", {
       collection: collection,
       logged_in: req.session.logged_in,
+      gardener: req.session.gardener,
+      nursery_manager: req.session.nursery_manager,
       page_title: 'Gardener Home',
     })
 

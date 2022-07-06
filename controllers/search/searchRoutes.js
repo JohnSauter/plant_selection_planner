@@ -12,6 +12,8 @@ const withAuth = require('../../utils/auth');
 router.get('/', async (req, res) => {
   res.render('search', {
     logged_in: req.session.logged_in,
+    gardener: req.session.gardener,
+    nursery_manager: req.session.nursery_manager,
     page_title: 'Results',})
 });
 

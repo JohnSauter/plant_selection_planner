@@ -14,6 +14,9 @@ router.post('/', async (req, res) => {
   try {
     if (req.body) {
       const searchCriteria = req.body.criteria;
+      const sunExposure = req.body.criteria.sunExposure;
+      const seasonOfInterest = req.body.criteria.seasonOfInterest;
+
       const plantData = await Plant_type.findAll({
         where: {
           hardiness_zone_lower: {

@@ -29,6 +29,8 @@ router.get('/home', async (req, res) => {
 router.get('/login', async (req, res) => {
   res.render('login', {
     logged_in: req.session.logged_in,
+    gardener: req.session.gardener,
+    nursery_manager: req.session.nursery_manager,
     page_title: 'Login',
   });
 });
@@ -36,6 +38,8 @@ router.get('/login', async (req, res) => {
 router.get('/sign_up_as_gardener', async (req, res) => {
   res.render('sign_up', {
     logged_in: req.session.logged_in,
+    gardener: req.session.gardener,
+    nursery_manager: req.session.nursery_manager,
     page_title: 'Sign Up as Gardener',
     user_type: 'Gardener',
   });
@@ -44,6 +48,8 @@ router.get('/sign_up_as_gardener', async (req, res) => {
 router.get('/sign_up_as_nursery_manager', async (req, res) => {
   res.render('sign_up', {
     logged_in: req.session.logged_in,
+    gardener: req.session.gardener,
+    nursery_manager: req.session.nursery_manager,
     page_title: 'Sign Up as Nursery Manager',
     user_type: 'Nursery',
   });
