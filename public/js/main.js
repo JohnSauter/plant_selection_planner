@@ -1,15 +1,23 @@
 /* the home button */
 
-/* If the user is logged in, take him to his home page.
- * If not, take him to the front page.  */
+// Plant Selection Planner button brings user to front page regardless of login status. My Collection/My Nursery button will bring user to their user page depending on user type.
 
 const home = async () => {
-  document.location.replace('/user/home');
+  document.location.replace('/');
 };
 
 const home_btn = document.querySelector('#home');
 if (home_btn) {
   home_btn.addEventListener('click', home);
+};
+
+const myCollection = async () => {
+  document.location.replace('/user/home');
+};
+
+const myCollectionBtn = document.querySelector('#my-collection');
+if (myCollectionBtn) {
+  myCollectionBtn.addEventListener('click', myCollection);
 };
 
 /* the logout button */
