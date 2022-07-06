@@ -17,18 +17,18 @@ const searchFormHandler = (event) => {
   const habit = document.querySelector('#habit').value;
   const lifeCycle = document.querySelector('#life-cycle').value;
   const sunExposure = {
-    fullSun: document.querySelector('#full-sun').checked,
-    partSun: document.querySelector('#part-sun').checked,
-    partShade: document.querySelector('#part-shade').checked,
-    fullShade: document.querySelector('#full-shade').checked
+    full_sun: document.querySelector('#full-sun').checked,
+    part_sun: document.querySelector('#part-sun').checked,
+    part_shade: document.querySelector('#part-shade').checked,
+    full_shade: document.querySelector('#full-shade').checked
   };
   const seasonOfInterest = {
-    earlySpring: document.querySelector('#early-spring').checked,
-    midSpring: document.querySelector('#mid-spring').checked,
-    lateSpring: document.querySelector('#late-spring').checked,
-    earlySummer: document.querySelector('#early-summer').checked,
-    midSummer: document.querySelector('#mid-summer').checked,
-    lateSummer: document.querySelector('#late-summer').checked,
+    early_spring: document.querySelector('#early-spring').checked,
+    mid_spring: document.querySelector('#mid-spring').checked,
+    late_spring: document.querySelector('#late-spring').checked,
+    early_summer: document.querySelector('#early-summer').checked,
+    mid_summer: document.querySelector('#mid-summer').checked,
+    late_summer: document.querySelector('#late-summer').checked,
     fall: document.querySelector('#fall').checked,
     winter: document.querySelector('#winter').checked
   }
@@ -93,7 +93,7 @@ const renderResults = (data) => {
       if (sunExposureTrues.length > 1) {
         sunExposureRange = sunExposureTrues[0] + " to " + sunExposureTrues.slice(-1)[0];
       } else {
-        sunExposureRange = seasonOfInterestTrues[0];
+        sunExposureRange = sunExposureTrues[0];
       };
       if (seasonOfInterestTrues.length > 1) {
         seasonOfInterestRange = seasonOfInterestTrues[0] + " to " + seasonOfInterestTrues.slice(-1)[0];
@@ -113,7 +113,7 @@ const renderResults = (data) => {
             <p>Habit: ${snakeToSentence(plant.habit)}</p>
             <p>Hardiness zone: ${plant.hardiness_zone_lower}-${plant.hardiness_zone_upper}</p>
             <p>Sun Exposure: ${sunExposureRange}</p>
-            <p>Sun Exposure: ${seasonOfInterestRange}</p>
+            <p>Season of Interest: ${seasonOfInterestRange}</p>
             <button class='button add-plant' data-plant-id="${plant.id}">Add to collection</button>
           </div>
         </div>
@@ -144,7 +144,11 @@ const addPlantHandler = (event) => {
   event.preventDefault();
   // Identify the plant id of the button clicked
   plantID = event.target.attributes['data-plant-id'].value;
-  addPlantToCollection(plantID);
+  const addedCheck = addPlantToCollection(plantID)
+  if (addedCheck) {
+    event.target.classList.add("added-plant-button");
+    event.target.innerText = "Added!"
+  }
 }
 
 //function to add plant to gardener's collection if they are logged in/prompt them to sign up if they are not
@@ -158,17 +162,15 @@ const addPlantToCollection = async (plantID) => {
       body: JSON.stringify(requestBody)
     });
     if (response.ok) {
-      console.log(response.json());
       console.log("Plant successfully added to collection");
+      return true
     } else {
+      window.alert("Please login or sign up to add plants to your collection!")
       console.log("Plant not added");
+      return false
     }
   }
 };
-
-
-
-
 
 // Check if coming from front page
 if (localStorage.getItem("userSearch")) {
