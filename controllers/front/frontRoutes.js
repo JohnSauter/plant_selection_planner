@@ -12,6 +12,8 @@ router.get('/', async (req, res) => {
   res.render('front', {
     username: req.session.username,
     logged_in: req.session.logged_in,
+    gardener: req.session.gardener,
+    nursery_manager: req.session.nursery_manager,
     page_title: 'Plant Selection Planner',
   });
 });

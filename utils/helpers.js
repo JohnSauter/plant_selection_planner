@@ -15,4 +15,7 @@ const format_date = (date) => {
 return result;
 };
 
-module.exports = {format_time, format_date};
+// convert snake case to sentence case
+const snakeToSentence = (snake) => snake.split("_").filter(x => x.length > 0).map((x) => (x.charAt(0).toUpperCase() + x.slice(1))).join(" ");
+
+module.exports = {format_time, format_date, snakeToSentence};

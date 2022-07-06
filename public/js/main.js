@@ -11,17 +11,6 @@ if (home_btn) {
   home_btn.addEventListener('click', home);
 };
 
-<<<<<<< HEAD
-const myCollection = async () => {
-  document.location.replace('/user/home');
-};
-
-const myCollectionBtn = document.querySelector('#my-collection');
-if (myCollectionBtn) {
-  myCollectionBtn.addEventListener('click', myCollection);
-};
-
-=======
 /* the my collection button */
 // if the user is logged in, this button is displayed and will take them to their user page
 const myCollectionBtn = document.querySelector('#my-collection');
@@ -35,7 +24,6 @@ if (myCollectionBtn) {
 };
 
 
->>>>>>> 8bb1582ce6b0db6004c8ff1efa584cbf946569b9
 /* the logout button */
 const logout = async () => {
   /* Tell the back end to log out the user who is
