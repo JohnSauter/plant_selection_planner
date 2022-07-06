@@ -43,7 +43,6 @@ router.post('/', async (req, res) => {
     }
     
     const gardenZoneID = gardenZoneData.get({ plain: true }).id;
-    console.log(gardenZoneID);
     
     // Create plant instance from plantID and gardenZoneID
     try {
