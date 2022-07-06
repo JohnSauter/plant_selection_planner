@@ -4,13 +4,26 @@
  * If not, take him to the front page.  */
 
 const home = async () => {
-  document.location.replace('/user/home');
+  document.location.replace('/');
 };
 
 const home_btn = document.querySelector('#home');
 if (home_btn) {
   home_btn.addEventListener('click', home);
 };
+
+/* the my collection button */
+// if the user is logged in, this button is displayed and will take them to their user page
+const myCollectionBtn = document.querySelector('#my-collection');
+
+const myCollectionPage = async () => {
+  document.location.replace('/user/home');
+}
+
+if (myCollectionBtn) {
+  myCollectionBtn.addEventListener('click', myCollectionPage)
+};
+
 
 /* the logout button */
 const logout = async () => {

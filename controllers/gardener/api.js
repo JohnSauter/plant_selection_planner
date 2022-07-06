@@ -20,6 +20,46 @@ let email_secure = process.env.EMAIL_SECURE;
 let email_user = process.env.EMAIL_USER;
 let email_password = process.env.EMAIL_PASSWORD;
 
+// Add plant to a user's collection
+router.post('/', async (req, res) => {
+  // Get plant_type_id
+  const plantID = req.body.plantID;
+  // Get user_id
+  const userID = req.session.user_id;
+  // Get garden_zone_id from user_id, or create one if one doesn't exist
+  try {
+    let gardenZoneData = await Garden_zone.findOne({
+      where: { user_id: userID }
+    })
+    // If user doesn't have a garden zone, create one and grab its ID
+    if (!gardenZoneData) {
+      try {
+        gardenZoneData = await Garden_zone.create({
+          user_id: userID,
+        })
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    }
+    
+    const gardenZoneID = gardenZoneData.get({ plain: true }).id;
+    console.log(gardenZoneID);
+    
+    // Create plant instance from plantID and gardenZoneID
+    try {
+      await Plant_instance.create({
+        plant_type_id: plantID,
+        garden_zone_id: gardenZoneID
+      })
+      res.json("Plant Instance created")
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
+
 /* Post to /gardener/api/email sends an email message.  */
 router.post('/email', withAuth, async (req, res) => {
   try {
