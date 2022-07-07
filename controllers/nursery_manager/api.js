@@ -24,7 +24,8 @@ router.put('/plant_type/:plant_type_id', withAuth, async (req, res) => {
 });
 
 router.post('/plant_type', withAuth, async (req, res) => {
-  const created_plant_type = await Plant_type.create(req.body);
+  console.log(req.body.criteria)
+  const created_plant_type = await Plant_type.create(req.body.criteria);
 
   if (!created_plant_type) {
     res.status(500).end();

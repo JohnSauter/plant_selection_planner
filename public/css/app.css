@@ -114,7 +114,7 @@ body {
     background: black;
 }
 
-#plant-search-form {
+#plant-search-form, #new-plant-form {
     border-color:#AABE4D;
     border-width:2px;
     border-style: solid;
