@@ -11,8 +11,10 @@ const router = require('express').Router();
 const withAuth = require('../../utils/auth');
 
 router.put('/plant_type/:plant_type_id', withAuth, async (req, res) => {
-  const updated_plant_type = await Plant_type.update(req.body, {
-    id: req.params.plant_type_id,
+  const updated_plant_type = await Plant_type.update(req.body.criteria, {
+    where: {
+      id: req.params.plant_type_id,
+    }
   });
 
   if (!updated_plant_type) {
