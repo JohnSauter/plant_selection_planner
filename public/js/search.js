@@ -102,7 +102,7 @@ const renderResults = (data) => {
       };
       // add new card to results
       results += `
-      <div class="cell columns small-12 large-4 plant-card">
+      <div class="cell columns small-12 medium-12 large-4 plant-card">
         <div class="card plant-card">
           <div class="card-section plant-card">
             <div class="card-divider">
