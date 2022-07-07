@@ -7,9 +7,17 @@
       {{/each}}
     </div>
   </div>
+  <p></p>
+  {{#if collection}}
+  <button class='button' id='remove-all-plants-btn'>Clear all from collection</button>
+  {{else}}
+  <p>Nothing here yet!</p>
+  {{/if}}
+  <p></p>
+  <h3>Send your collection to the nursery!</h3>
   <button class='button' id='send-email'>send email</button>
-
-<div class="reveal" id="email-response" data-reveal>
+  
+  <div class="reveal" id="email-response" data-reveal>
     <h1>Email response</h1>
     <p id="email-response-message"></p>
     <button class="close-button" data-close aria-label="Close modal" type="button">
