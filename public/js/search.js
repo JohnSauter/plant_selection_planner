@@ -100,7 +100,7 @@ const renderResults = (data) => {
       } else {
         seasonOfInterestRange = seasonOfInterestTrues[0];
       };
-      //add new card to results
+      // add new card to results
       results += `
       <div class="cell columns small-12 large-4 plant-card">
         <div class="card plant-card">
@@ -113,12 +113,22 @@ const renderResults = (data) => {
             <p>Habit: ${snakeToSentence(plant.habit)}</p>
             <p>Hardiness zone: ${plant.hardiness_zone_lower}-${plant.hardiness_zone_upper}</p>
             <p>Sun Exposure: ${sunExposureRange}</p>
-            <p>Season of Interest: ${seasonOfInterestRange}</p>
-            <button class='button add-plant' data-plant-id="${plant.id}">Add to collection</button>
+            <p>Season of Interest: ${seasonOfInterestRange}</p>`
+      // use logout button to check login status
+      if (document.querySelector("#logout")){
+        results += `
+              <button class='button add-plant' data-plant-id="${plant.id}">Add to collection</button>
+            </div>
           </div>
         </div>
-      </div>
-      `
+        `
+      } else {
+        results += `
+            </div>
+          </div>
+        </div>
+        `
+      }
     });
     //display resultts in resultsContainer
     resultsContainer.innerHTML = results;
