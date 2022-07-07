@@ -102,18 +102,18 @@ const renderResults = (data) => {
       };
       // add new card to results
       results += `
-      <div class="cell columns small-12 medium-12 large-4 plant-card">
+      <div class="cell columns small-12 medium-6 large-4 plant-card">
         <div class="card plant-card">
-          <div class="card-section plant-card">
+          <div class="card-section">
             <div class="card-divider">
               <h4>${plant.plant_name}</h4>
             </div>
             <p>${plant.description}</p>
-            <p>Life cycle: ${snakeToSentence(plant.life_cycle)}</p>
-            <p>Habit: ${snakeToSentence(plant.habit)}</p>
-            <p>Hardiness zone: ${plant.hardiness_zone_lower}-${plant.hardiness_zone_upper}</p>
-            <p>Sun Exposure: ${sunExposureRange}</p>
-            <p>Season of Interest: ${seasonOfInterestRange}</p>`
+            <p><span class="property-title">Life cycle:</span> ${snakeToSentence(plant.life_cycle)}</p>
+            <p><span class="property-title">Habit:</span> ${snakeToSentence(plant.habit)}</p>
+            <p><span class="property-title">Hardiness zone:</span> ${plant.hardiness_zone_lower}-${plant.hardiness_zone_upper}</p>
+            <p><span class="property-title">Sun Exposure:</span> ${sunExposureRange}</p>
+            <p><span class="property-title">Season of Interest:</span> ${seasonOfInterestRange}</p>`
       // use logout button to check login status
       if (document.querySelector("#logout")){
         results += `

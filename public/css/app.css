@@ -82,8 +82,12 @@ body {
     margin: 10px;
 }
 
-.plant-card {
+/* .plant-card {
     height: 100%;
+} */
+
+.property-title {
+    font-weight: bold;
 }
 
 .search-form-section {
