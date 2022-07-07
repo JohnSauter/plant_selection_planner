@@ -46,8 +46,13 @@ const newPlantFormHandler = (event) => {
     winter
   };
 
-  // Send form data to server for server to query database and render results on page
-  newPlant(plantCriteria);
+  // Prevent a nameless plant from being added
+  if (!plantCriteria.plant_name) {
+    window.alert("Please input a plant name!")
+  } else {
+    // Send form data to server for server to query database and render results on page
+    newPlant(plantCriteria);
+  }
 };
 
 // Functions within form handler
@@ -62,6 +67,7 @@ const newPlant = async (criteria) => {
     if (response.ok) {
       const data = await response.json();
       console.log(data);
+      location.reload();
     } else {
       console.log("No data")
     }
