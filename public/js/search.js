@@ -69,7 +69,7 @@ const snakeToSentence = (snake) => snake.split("_").filter(x => x.length > 0).ma
 const renderResults = (data) => {
   resultsHeading.innerText = "Results";
   let results = "";
-  if (data) {
+  if (data.length > 0) {
     data.forEach(plant => {
       // Gather sun exposure and season of interest for each plant into arrays for later display
       const sunExposureArray = ["full_sun", "part_sun", "part_shade", "full_shade"];
