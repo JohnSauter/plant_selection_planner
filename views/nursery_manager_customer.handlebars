@@ -1,0 +1,22 @@
+<main>
+  {{#if customer}}
+  <h3>{{customer.name}}'s Collection</h3>
+  <div class="grid-container">
+    <div class="grid-x align-spaced" id="results-container">
+      {{#if collection}}
+        {{#each collection as |plant|}}
+        {{> customer}}
+        {{/each}}
+      {{else}}
+        <h3>Nothing here yet!</h3>
+      {{/if}}
+    </div>
+  </div>
+  <p></p>
+  {{else}}
+  <h3>No user exists with that name!</h3>
+  {{/if}}
+
+</main>
+
+<script src='/js/nursery_manager_customer.js'></script>

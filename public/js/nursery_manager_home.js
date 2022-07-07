@@ -13,9 +13,16 @@ const goToEditPlant = (event) => {
   window.location.replace(`/nursery_manager/edit_plant/${plantID}`)
 };
 
+const goToCustomer = (event) => {
+  event.preventDefault();
+  const customerName = document.querySelector("#customer").value.trim();
+  window.location.replace(`/nursery_manager/customer/${customerName}`);
+}
+
 // Event Listeners
 plantPageBtn.addEventListener("click", goToAddPlant);
 editPageForm.addEventListener("submit", goToEditPlant);
+viewCustomerForm.addEventListener("submit", goToCustomer);
 
 // /* the seed button */
 // const seed_database = async () => {
