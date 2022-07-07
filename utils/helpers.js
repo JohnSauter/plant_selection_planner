@@ -42,7 +42,7 @@ const convertToRange = (array) => {
     if (sunExposureTrues.length > 1) {
       plant.plant_type.sunExposureRange = sunExposureTrues[0] + " to " + sunExposureTrues.slice(-1)[0];
     } else {
-      plant.plant_type.sunExposureRange = seasonOfInterestTrues[0];
+      plant.plant_type.sunExposureRange = sunExposureTrues[0];
     };
     if (seasonOfInterestTrues.length > 1) {
       plant.plant_type.seasonOfInterestRange = seasonOfInterestTrues[0] + " to " + seasonOfInterestTrues.slice(-1)[0];
