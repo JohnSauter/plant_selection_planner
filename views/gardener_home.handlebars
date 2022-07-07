@@ -1,12 +1,12 @@
 <main>
   <h3>My Collection</h3>
-  <div class="grid-container">
+  {{!-- <div class="grid-container"> --}}
     <div class="grid-x align-spaced" id="results-container">
       {{#each collection as |plant|}}
       {{> collection}}
       {{/each}}
     </div>
-  </div>
+  {{!-- </div> --}}
   <p></p>
   {{#if collection}}
   <button class='button' id='remove-all-plants-btn'>Clear all from collection</button>
