@@ -1,0 +1,137 @@
+<h3>Edit a plant in the database by its ID</h3>
+  <form id="edit-plant-form" data-id="{{plant.id}}">
+    <div class="grid-x align-spaced search-form-section">
+      <label class="cell large-12"><h5>Plant Name (Scientific)</h5></label>
+      <input type="text" value="{{plant.plant_name}}" id="plant-name">
+    </div>
+    <div class="grid-x align-spaced search-form-section">
+      <label class="cell large-12"><h5>Plant Description</h5></label>
+      <textarea id="plant-desc">{{plant.description}}</textarea>
+    </div>
+    <div class="grid-x align-spaced search-form-section">
+      <label class="cell large-2"><h5>Lower Hardiness</h5>
+        <select id='hardiness-zone-lower'>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>        
+        </select>
+      </label>
+            <label class="cell large-2"><h5>Upper Hardiness</h5>
+        <select id='hardiness-zone-upper'>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>        
+        </select>
+      </label>
+      <label class="cell large-2"><h5>Habit</h5>
+        <select id='habit'>
+          <option value="tree">Tree</option>
+          <option value="shrub">Shrub</option>
+          <option value="vine">Vine</option>
+          <option value="grass">Grass</option>
+          <option value="herb">Herb</option>       
+        </select>
+      </label>
+      <label class="cell large-2"><h5>Life Cycle</h5>
+        <select id='life-cycle'>
+          <option value="perennial">Perennial</option>
+          <option value="biennial">Biennial</option>
+          <option value="annual">Annual</option>     
+        </select>
+      </label>
+    </div>
+    <div class="grid-x">
+      <fieldset class="cell large-12 search-form-section">
+        <legend><h5>Sun Exposure</h5></legend>
+        <div class="grid-x">
+          {{#if plant.full_sun}}
+          <div class="cell large-1 medium-3 small-3"><input type="checkbox" id="full-sun" checked><label for="full-sun">Full Sun</label></div>
+          {{else}}
+          <div class="cell large-1 medium-3 small-3"><input type="checkbox" id="full-sun"><label for="full-sun">Full Sun</label></div>
+          {{/if}}
+          {{#if plant.part_sun}}
+          <div class="cell large-1 medium-3 small-3"><input type="checkbox" id="part-sun" checked><label for="part-sun">Part Sun</label></div>
+          {{else}}
+          <div class="cell large-1 medium-3 small-3"><input type="checkbox" id="part-sun"><label for="part-sun">Part Sun</label></div>
+          {{/if}}
+          {{#if plant.part_shade}}
+          <div class="cell large-1 medium-3 small-3"><input type="checkbox" id="part-shade" checked><label for="part-shade">Part Shade</label></div>
+          {{else}}
+          <div class="cell large-1 medium-3 small-3"><input type="checkbox" id="part-shade"><label for="part-shade">Part Shade</label></div>
+          {{/if}}
+          {{#if plant.full_shade}}
+          <div class="cell large-1 medium-3 small-3"><input type="checkbox" id="full-shade" checked><label for="full-shade">Full Shade</label></div>
+          {{else}}          
+          <div class="cell large-1 medium-3 small-3"><input type="checkbox" id="full-shade"><label for="full-shade">Full Shade</label></div>
+          {{/if}}    
+      </fieldset>
+    </div>
+    <div class="grid-x align-justify">
+      <fieldset class="cell large-12">
+        <legend><h5>Season of Interest</h5></legend>
+        <div class="grid-x">
+          {{#if plant.early_spring}}
+          <div class="cell large-1 small-3"><input type="checkbox" id="early-spring" checked><label for="early-spring">Early Spring</label></div>
+          {{else}}   
+          <div class="cell large-1 small-3"><input type="checkbox" id="early-spring"><label for="early-spring">Early Spring</label></div>
+          {{/if}}
+          {{#if plant.mid_spring}}
+          <div class="cell large-1 small-3"><input type="checkbox" id="mid-spring" checked><label for="mid-spring">Mid Spring</label></div>
+          {{else}}   
+          <div class="cell large-1 small-3"><input type="checkbox" id="mid-spring"><label for="mid-spring">Mid Spring</label></div>
+          {{/if}}
+          {{#if plant.late_spring}}
+          <div class="cell large-1 small-3"><input type="checkbox" id="late-spring" checked><label for="late-spring">Late Spring</label></div>
+          {{else}}   
+          <div class="cell large-1 small-3"><input type="checkbox" id="late-spring"><label for="late-spring">Late Spring</label></div>
+          {{/if}}
+          {{#if plant.early_summer}}
+          <div class="cell large-1 small-3"><input type="checkbox" id="early-summer" checked><label for="early-summer">Early Summer</label></div>
+          {{else}}   
+          <div class="cell large-1 small-3"><input type="checkbox" id="early-summer"><label for="early-summer">Early Summer</label></div>
+          {{/if}}
+          {{#if plant.mid_summer}}
+          <div class="cell large-1 small-3"><input type="checkbox" id="mid-summer" checked><label for="mid-summer">Mid Summer</label></div>
+          {{else}}   
+          <div class="cell large-1 small-3"><input type="checkbox" id="mid-summer"><label for="mid-summer">Mid Summer</label></div>
+          {{/if}}
+          {{#if plant.late_summer}}
+          <div class="cell large-1 small-3"><input type="checkbox" id="late-summer" checked><label for="late-summer">Late Summer</label></div>
+          {{else}}   
+          <div class="cell large-1 small-3"><input type="checkbox" id="late-summer"><label for="late-summer">Late Summer</label></div>
+          {{/if}}
+          {{#if plant.fall}}
+          <div class="cell large-1 small-3"><input type="checkbox" id="fall" checked><label for="fall">Fall</label></div>
+          {{else}}   
+          <div class="cell large-1 small-3"><input type="checkbox" id="fall"><label for="fall">Fall</label></div>
+          {{/if}}
+          {{#if plant.winter}}
+          <div class="cell large-1 small-3"><input type="checkbox" id="winter" checked><label for="winter">Winter</label></div>
+          {{else}}   
+          <div class="cell large-1 small-3"><input type="checkbox" id="winter"><label for="winter">Winter</label></div>
+          {{/if}}
+        </div>       
+      </fieldset>
+    </div>
+    <button class='button cell large-12' id='plant-add'>Edit plant!</button>
+  </form>

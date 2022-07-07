@@ -11,8 +11,10 @@ const router = require('express').Router();
 const withAuth = require('../../utils/auth');
 
 router.put('/plant_type/:plant_type_id', withAuth, async (req, res) => {
-  const updated_plant_type = await Plant_type.update(req.body, {
-    id: req.params.plant_type_id,
+  const updated_plant_type = await Plant_type.update(req.body.criteria, {
+    where: {
+      id: req.params.plant_type_id,
+    }
   });
 
   if (!updated_plant_type) {
@@ -24,7 +26,8 @@ router.put('/plant_type/:plant_type_id', withAuth, async (req, res) => {
 });
 
 router.post('/plant_type', withAuth, async (req, res) => {
-  const created_plant_type = await Plant_type.create(req.body);
+  console.log(req.body.criteria)
+  const created_plant_type = await Plant_type.create(req.body.criteria);
 
   if (!created_plant_type) {
     res.status(500).end();

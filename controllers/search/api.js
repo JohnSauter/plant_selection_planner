@@ -75,13 +75,4 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Retrieve a plant by its id
-router.get('/:id', async (req, res) => {
-  const plantData = await Plant_type.findByPk(req.params.id)
-
-  const plant = plantData.get({ plain: true });
-
-  console.log(plant);
-});
-
 module.exports = router;

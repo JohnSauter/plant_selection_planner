@@ -2,6 +2,7 @@
 
 const router = require('express').Router();
 const nodemailer = require('nodemailer');
+const { Op } = require("sequelize");
 
 const {
   User,
@@ -68,6 +69,76 @@ router.post('/', withAuth, async (req, res) => {
     } catch (err) {
       res.status(500).json(err);
     }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Remove a plant from a user's collection
+router.delete('/clear/one', withAuth, async (req, res) => {
+  // Get plant_type_id
+  const plantID = req.body.plantID;
+  // Get user_id
+  const userID = req.session.user_id;
+  // Get garden zone ID
+  let gardenZoneID;
+  try {
+    let gardenZoneData = await Garden_zone.findOne({
+      where: { user_id: userID }
+    })
+    gardenZoneID = gardenZoneData.get({ plain: true }).id;
+  } catch (err) {
+    res.status(500).json(err);
+  }
+
+  try {
+    const plantInstanceData = await Plant_instance.destroy({
+      where: {
+        [Op.and]: [{plant_type_id: plantID}, {garden_zone_id: gardenZoneID}]
+      },
+    });
+
+    
+    if (!plantInstanceData) {
+      res.status(404).json({ message: 'No plant found with this id!' });
+      return;
+    }
+
+    res.status(200).json(plantInstanceData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Remove all plants from a user's collection
+router.delete('/clear/all', withAuth, async (req, res) => {
+  // Get user_id
+  const userID = req.session.user_id;
+  // Get garden zone ID
+  let gardenZoneID;
+  try {
+    let gardenZoneData = await Garden_zone.findOne({
+      where: { user_id: userID }
+    })
+    gardenZoneID = gardenZoneData.get({ plain: true }).id;
+  } catch (err) {
+    res.status(500).json(err);
+  }
+
+  try {
+    const plantInstanceData = await Plant_instance.destroy({
+      where: {
+        garden_zone_id: gardenZoneID
+      },
+    });
+
+    
+    if (!plantInstanceData) {
+      res.status(404).json({ message: 'No plants found!' });
+      return;
+    }
+
+    res.status(200).json(plantInstanceData);
   } catch (err) {
     res.status(500).json(err);
   }

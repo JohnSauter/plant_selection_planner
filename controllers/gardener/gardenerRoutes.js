@@ -34,7 +34,7 @@ router.get('/home', withAuth, async (req, res) => {
       include: [
         {
           model: Plant_type,
-          attributes: ["plant_name", "description", "hardiness_zone_lower", "hardiness_zone_upper", "habit", "life_cycle", "full_sun", "part_sun", "part_shade", "full_shade", "early_spring", "mid_spring", "late_spring", "early_summer", "mid_summer", "late_summer", "fall", "winter"],
+          attributes: ["id", "plant_name", "description", "hardiness_zone_lower", "hardiness_zone_upper", "habit", "life_cycle", "full_sun", "part_sun", "part_shade", "full_shade", "early_spring", "mid_spring", "late_spring", "early_summer", "mid_summer", "late_summer", "fall", "winter"],
         },
       ],
     });

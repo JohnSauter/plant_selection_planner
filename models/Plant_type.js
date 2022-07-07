@@ -36,11 +36,6 @@ Plant_type.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    size: {
-      // l x w
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     life_cycle: {
       // annual, biennial, perennial
       type: DataTypes.STRING,

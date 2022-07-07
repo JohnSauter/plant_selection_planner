@@ -1,9 +1,16 @@
-<h3>Find plants for your garden!</h3>
-  <form id="plant-search-form">
-    {{!-- hardiness, habit, life cycle, exposure, SOI --}}
+<h3>Add a plant to the database</h3>
+  <form id="new-plant-form">
     <div class="grid-x align-spaced search-form-section">
-      <label class="cell large-3"><h5>Hardiness Zone</h5>
-        <select id='hardiness-zone'>
+      <label class="cell large-12"><h5>Plant Name (Scientific)</h5></label>
+      <input type="text" placeholder="Please use binomial nomenclature" id="plant-name">
+    </div>
+    <div class="grid-x align-spaced search-form-section">
+      <label class="cell large-12"><h5>Plant Description</h5></label>
+      <textarea placeholder="Please include common name(s)" id="plant-desc"></textarea>
+    </div>
+    <div class="grid-x align-spaced search-form-section">
+      <label class="cell large-2"><h5>Lower Hardiness</h5>
+        <select id='hardiness-zone-lower'>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -19,7 +26,24 @@
           <option value="13">13</option>        
         </select>
       </label>
-      <label class="cell large-3"><h5>Habit</h5>
+            <label class="cell large-2"><h5>Upper Hardiness</h5>
+        <select id='hardiness-zone-upper'>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>        
+        </select>
+      </label>
+      <label class="cell large-2"><h5>Habit</h5>
         <select id='habit'>
           <option value="tree">Tree</option>
           <option value="shrub">Shrub</option>
@@ -28,7 +52,7 @@
           <option value="herb">Herb</option>       
         </select>
       </label>
-      <label class="cell large-3"><h5>Life Cycle</h5>
+      <label class="cell large-2"><h5>Life Cycle</h5>
         <select id='life-cycle'>
           <option value="perennial">Perennial</option>
           <option value="biennial">Biennial</option>
@@ -61,5 +85,5 @@
         </div>       
       </fieldset>
     </div>
-    <button class='button cell large-12' id='plant-search'>Search!</button>
+    <button class='button cell large-12' id='plant-add'>Add plant!</button>
   </form>

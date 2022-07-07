@@ -1,6 +1,29 @@
 <main>
-  <button class='button' id='seed-database'>Initialize the Plant and User tables
-    for testing.</button>
+  <h3>My Nursery</h3>
+  <div class="grid-container">
+    <div class="grid-x">
+      <button class='button' id='add-plant-page'>Add a plant to the database</button>
+    </div>
+  </div>
+  <form class="grid-container" id="edit-plant-page">
+    <div class="grid-x">
+      <input class="cell large-2" type="text" placeholder="id" id="plant-id">
+      <button class='button' id='seed-database'>Edit a Plant by its ID</button>
+    </div>
+  </form>
+  <form class="grid-container" id="view-customer-page">
+    <div class="grid-x">
+      <input class="cell large-2" type="text" id="customer">
+      <button class='button' id='seed-database'>View a customer's collection</button>
+    </div>
+  </form>
+  {{!-- <div class="grid-container">
+    <div class="grid-x">
+      <button class='button' id='seed-database'>Initialize the Plant and User tables for testing.</button>
+    </div>
+  </div> --}}
+
+
 </main>
 
 <script src='/js/nursery_manager_home.js'></script>
